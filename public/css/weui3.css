@@ -1,0 +1,30 @@
+/*
+ *  common
+ */
+.margin-top_50{margin-top:50%;}
+.margin-t-b-40{margin:40px auto;}
+
+.text-center{text-align:center;}
+.text-right{text-align:right;}
+.text-left{text-align:left;}
+
+.text-primary{color:#1aad19;}
+.text-danger{color:#E64340;}
+.text-warn{color:#FFBE00;}
+.text-mute{color:#c7c7c7;}
+
+.hide{display:none;}
+.show{display:block;}
+
+
+.weui-cell__bd{padding-left:10px}
+.weui-cells_top0{margin-top:0em}
+
+/*
+ * Home index
+ */
+.list-first{font-size:1.2em;}
+.list-second{font-size:0.8em;}
+.list-third{font-size:0.5em;}
+
+.weui-flex_padding .weui-flex__item{padding:10px 15px;text-align:center}
