@@ -5,8 +5,11 @@ return [
 		'url'         	=>  env('API_URL','http://neworder.advancina.net/api/'),
         'login'         =>  'login',
         'regist'        =>  'signup',
+        //用户
         'userInfo'      =>  'user/info',
-        'codeVerify'    =>  'verify'
+        'codeVerify'    =>  'verify',
+        //商品
+        'merchant'          =>  'merchant',
     ],
 
     //minutes

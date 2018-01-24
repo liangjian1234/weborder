@@ -17,11 +17,11 @@
                     </div>
                 </div>
                 <div class="page__bd page__bd_spacing margin-t-b-40 {{!empty($user->email)&&$user->email_verified=='N'?'show':'hide'}}">
-                    <p class="text-danger" id="verifyEmail">Verify email</p>
+                    <p class="text-base_dark" id="verifyEmail">Verify email</p>
                 </div>
                 <div class="page__bd page__bd_spacing">
                     <div class="weui-cells">
-                        <a href="javascript:;" class="weui-btn weui-btn_primary">CHANGE EMAIL</a>
+                        <a href="javascript:;" class="weui-btn weui-btn_base">CHANGE EMAIL</a>
                     </div>
                 </div>
             </div>
@@ -39,11 +39,11 @@
                     </div>
                 </div>
                 <div class="page__bd page__bd_spacing margin-t-b-40">
-                    <p class="text-danger" id="changeEmail">Change email</p>
+                    <p class="text-base_dark" id="changeEmail">Change email</p>
                 </div>
                 <div class="page__bd page__bd_spacing">
                     <div class="weui-cells">
-                        <a href="javascript:;" class="weui-btn weui-btn_primary">VERIFY EMAIL</a>
+                        <a href="javascript:;" class="weui-btn weui-btn_base">VERIFY EMAIL</a>
                     </div>
                 </div>
             </div>
@@ -64,11 +64,11 @@
                     </div>
                 </div>
                 <div class="page__bd page__bd_spacing margin-t-b-40 {{!empty($user->phone)&&$user->phone_verified=='N'?'show':'hide'}}">
-                    <p class="text-danger" id="verifyMobile">Verify mobile</p>
+                    <p class="text-base_dark" id="verifyMobile">Verify mobile</p>
                 </div>
                 <div class="page__bd page__bd_spacing">
                     <div class="weui-cells">
-                        <a href="javascript:;" class="weui-btn weui-btn_primary">CHANGE MOBILE</a>
+                        <a href="javascript:;" class="weui-btn weui-btn_base">CHANGE MOBILE</a>
                     </div>
                 </div>
             </div>
@@ -86,11 +86,11 @@
                     </div>
                 </div>
                 <div class="page__bd page__bd_spacing margin-t-b-40">
-                    <p class="text-danger" id="changeMobile">Change mobile</p>
+                    <p class="text-base_dark" id="changeMobile">Change mobile</p>
                 </div>
                 <div class="page__bd page__bd_spacing">
                     <div class="weui-cells">
-                        <a href="javascript:;" class="weui-btn weui-btn_primary">VERIFY MOBILE</a>
+                        <a href="javascript:;" class="weui-btn weui-btn_base">VERIFY MOBILE</a>
                     </div>
                 </div>
             </div>
@@ -122,7 +122,7 @@
             </div>
             <div class="page__bd page__bd_spacing">
                 <div class="weui-cells">
-                    <a href="javascript:;" class="weui-btn weui-btn_primary">OK</a>
+                    <a href="javascript:;" class="weui-btn weui-btn_base">OK</a>
                 </div>
             </div>
             @break
@@ -137,7 +137,7 @@
             </div>
             <div class="page__bd page__bd_spacing">
                 <div class="weui-cells">
-                    <a href="javascript:;" class="weui-btn weui-btn_primary">OK</a>
+                    <a href="javascript:;" class="weui-btn weui-btn_base">OK</a>
                 </div>
             </div>
             @break

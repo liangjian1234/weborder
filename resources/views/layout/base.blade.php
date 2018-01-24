@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="{{ asset('css/weui2.css') }}">
     <link rel="stylesheet" href="{{ asset('css/weui3.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    @section('base_head')
+    @show
 </head>
 <body ontouchstart>
     <div class="container">

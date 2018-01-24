@@ -1,5 +1,5 @@
 <div class="weui-cells weui-cells_top0">
-    <div class="weui-cell">
+    <div class="weui-cell padding-t bg-base_light text-white">
         {{--<div class="weui-cell__hd"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII=" alt="" style="width:40px;margin-right:5px;display:block"></div>--}}
         <div class="weui-cell__bd">
             <p><h2>{{ !empty($user->lname)||!empty($user->mname)||!empty($user->fname)?$user->lname.' '.$user->mname.' '.$user->fname:'Dear user'}}</h2></p>
@@ -9,19 +9,19 @@
 </div>
 <div class="weui-grids bg-white">
     <a href="javascript:;" class="weui-grid">
-        <div class="weui-grid__icon text-center">
+        <div class="weui-grid__icon text-center text-danger">
             0.00
         </div>
         <p class="weui-grid__label">Wallet</p>
     </a>
     <a href="javascript:;" class="weui-grid">
-        <div class="weui-grid__icon text-center">
+        <div class="weui-grid__icon text-center text-primary">
             1
         </div>
         <p class="weui-grid__label">Coupon</p>
     </a>
     <a href="javascript:;" class="weui-grid">
-        <div class="weui-grid__icon text-center">
+        <div class="weui-grid__icon text-center text-warn">
             500
         </div>
         <p class="weui-grid__label">Coin</p>
@@ -30,7 +30,7 @@
 <div class="weui-cells">
     <a class="weui-cell weui-cell_access" href="{{route('user.edit',['type'=>'name'])}}">
         <div class="weui-cell__hd">
-            <i class="fa fa-user"></i>
+            <i class="fa fa-user text-blue"></i>
         </div>
         <div class="weui-cell__bd">
             <p class="{{ !empty($user->lname)||!empty($user->mname)||!empty($user->fname)?:'text-mute'}}">{{ !empty($user->lname)||!empty($user->mname)||!empty($user->fname)?$user->lname.' '.$user->mname.' '.$user->fname:'unset name'}}</p>
@@ -39,27 +39,27 @@
     </a>
     <a class="weui-cell weui-cell_access" href="{{route('user.edit',['type'=>'email'])}}">
         <div class="weui-cell__hd">
-            <i class="fa fa-envelope"></i>
+            <i class="fa fa-envelope text-primary"></i>
         </div>
         <div class="weui-cell__bd">
             <p class="{{!empty($user->email)?:'text-mute'}}">{{!empty($user->email)?$user->email:'unset email'}}</p>
         </div>
-        <div class="weui-cell__ft {{$user->email_verified=='N'?'text-danger':'text-primary'}}">{{!empty($user->email)?$user->email_verified=='N'?'unverified':'verified':''}}</div>
+        <div class="weui-cell__ft {{$user->email_verified=='N'?'text-base_dark':'text-primary'}}">{{!empty($user->email)?$user->email_verified=='N'?'unverified':'verified':''}}</div>
     </a>
     <a class="weui-cell weui-cell_access" href="{{route('user.edit',['type'=>'mobile'])}}">
         <div class="weui-cell__hd">
-            <i class="fa fa-phone"></i>
+            <i class="fa fa-phone text-danger"></i>
         </div>
         <div class="weui-cell__bd">
             <p class="{{!empty($user->phone)?:'text-mute'}}">{{!empty($user->phone)?'+'.$user->country_code.' '.$user->phone:'unset phone'}}</p>
         </div>
-        <div class="weui-cell__ft {{$user->phone_verified=='N'?'text-danger':'text-primary'}}">{{!empty($user->phone)?$user->phone_verified=='N'?'unverified':'verified':''}}</div>
+        <div class="weui-cell__ft {{$user->phone_verified=='N'?'text-base_dark':'text-primary'}}">{{!empty($user->phone)?$user->phone_verified=='N'?'unverified':'verified':''}}</div>
     </a>
 </div>
 <div class="weui-cells">
     <a id="changeStateCity" class="weui-cell weui-cell_access" href="javascript:;">
         <div class="weui-cell__hd">
-            <i class="fa fa-send"></i>
+            <i class="fa fa-send text-base_light"></i>
         </div>
         <div class="weui-cell__bd">
             <p class="{{!empty($user->state)?:'text-mute'}}">{{!empty($user->state)?$user->city.' , '.$user->state:'unset state & city'}}</p>
@@ -68,7 +68,7 @@
     </a>
     <a class="weui-cell weui-cell_access" href="{{route('user.edit',['type'=>'address'])}}">
         <div class="weui-cell__hd">
-            <i class="fa fa-address-book"></i>
+            <i class="fa fa-address-book text-warn"></i>
         </div>
         <div class="weui-cell__bd">
             <p class="{{!empty($user->address)?:'text-mute'}}">{{!empty($user->address)?$user->address:'unset address'}}</p>
@@ -79,6 +79,6 @@
 @include('user.about')
 <div class="page__bd page__bd_spacing">
     <div class="weui-cells">
-        <button class="weui-btn weui-btn_warn btn-logout">LOG OUT</button>
+        <button class="weui-btn weui-btn_base btn-logout">LOG OUT</button>
     </div>
 </div>

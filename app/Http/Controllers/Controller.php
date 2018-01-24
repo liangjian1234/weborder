@@ -44,7 +44,7 @@ class Controller extends BaseController
         }
         return response()->json($res);
     }
-    //获取API服务器数据
+    //获取API服务器数据，携带token
     public function getApiServer($token,$data,$url,$type){
         $res    = new \stdClass();
         if($token){
@@ -62,5 +62,19 @@ class Controller extends BaseController
             }
         }
         return $res;
+    }
+    //获取API服务器数据，不需要token
+    public function getApiServerNone($data,$url,$types){
+        $type   = strtolower($types);
+        if($type=='get'){
+            $response = Curl::to($url)->withData($data)->asJsonResponse()->get();
+        }else if($type=='post'){
+            $response = Curl::to($url)->withData($data)->asJsonResponse()->post();
+        }else if($type=='put'){
+            $response = Curl::to($url)->withData($data)->asJsonResponse()->put();
+        }else{
+            $response = ['code'=>2018,'msg'=>'request error'];
+        }
+        return $response;
     }
 }

@@ -10,17 +10,48 @@ class HomeController extends Controller
 {
     public $API_URL_LOGIN;
     public $API_URL_REGIST;
+    public $API_URL_MCHT;
     public $API_TOKEN_LIFETIME;
     public function __construct()
     {
         $this->API_URL_LOGIN        = config('advancina.api.url').config('advancina.api.login');
         $this->API_URL_REGIST       = config('advancina.api.url').config('advancina.api.regist');
+        $this->API_URL_MCHT         = config('advancina.api.url').config('advancina.api.merchant');
         $this->API_TOKEN_LIFETIME   = config('advancina.tokenLifetime');
     }
     //home首页
-    public function index()
+    public function index(Request $request,$mchtid='')
     {
-        return view('home.index');
+        if($mchtid){
+            $data   =   [
+                'mcht_id'      => $mchtid,
+                'item_status'  => 'A',
+                'per_page'     => 10,
+                'page'          => 1,
+                'type'          => 'unlogin'
+            ];
+            $response = $this->getApiServerNone($data,$this->API_URL_MCHT,'get');
+            if($response->code===10000){
+                $cookie = cookie('merchant_id',$mchtid,0);
+                return response()->view('home.index',compact('mchtid'))->cookie($cookie);
+            }
+        }else{
+            $mchtid = $request->cookie('merchant_id');
+            if($mchtid){
+                $data   =   [
+                    'mcht_id'      => $mchtid,
+                    'item_status'  => 'A',
+                    'per_page'     => 10,
+                    'page'          => 1,
+                    'type'          => 'unlogin'
+                ];
+                $response = $this->getApiServerNone($data,$this->API_URL_MCHT,'get');
+                if($response->code===10000){
+                    return response()->view('home.index',compact('mchtid'));
+                }
+            }
+        }
+        return view('home.notfound');
     }
     //登录
     public function login(Request $request)

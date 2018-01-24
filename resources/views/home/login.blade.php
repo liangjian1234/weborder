@@ -23,11 +23,11 @@
             </div>
         </div>
         <div class="page__bd page__bd_spacing margin-t-b-40">
-            <p id="email" class="text-danger">Login via moblie</p>
+            <p id="email" class="text-base_mid">Login via moblie</p>
         </div>
         <div class="page__bd page__bd_spacing">
             <div class="weui-cells">
-                <a href="javascript:;" class="weui-btn weui-btn_primary" onclick="login('email',this)">LOG IN</a>
+                <a href="javascript:;" class="weui-btn weui-btn_base" onclick="login('email',this)">LOG IN</a>
             </div>
         </div>
     </div>
@@ -54,20 +54,20 @@
             </div>
         </div>
         <div class="page__bd page__bd_spacing margin-t-b-40">
-            <p id="phone" class="text-danger">Login via email</p>
+            <p id="phone" class="text-base_mid">Login via email</p>
         </div>
         <div class="page__bd page__bd_spacing">
             <div class="weui-cells">
-                <a href="javascript:;" class="weui-btn weui-btn_primary" onclick="login('phone',this)">LOG IN</a>
+                <a href="javascript:;" class="weui-btn weui-btn_base" onclick="login('phone',this)">LOG IN</a>
             </div>
         </div>
     </div>
     <div class="page__bd page__bd_spacing">
         <div class="text-right">
-            <a href="" class="text-primary">Forgot for password ?</a>
+            <a href="" class="text-mute">Forgot for password ?</a>
         </div>
         <div class="weui-cells">
-            <a href="{{ route('regist') }}" class="weui-btn weui-btn_plain-primary">SIGN UP</a>
+            <a href="{{ route('regist') }}" class="weui-btn weui-btn_plain-base">SIGN UP</a>
         </div>
     </div>
 @endsection

@@ -24,11 +24,11 @@
             </div>
         </div>
         <div class="page__bd page__bd_spacing margin-t-b-40">
-            <p id="email" class="text-danger">Use my mobile number</p>
+            <p id="email" class="text-base_mid">Use my mobile number</p>
         </div>
         <div class="page__bd page__bd_spacing">
             <div class="weui-cells">
-                <a href="javascript:;" class="weui-btn weui-btn_primary"  onclick="signup('email',this)">SIGN UP</a>
+                <a href="javascript:;" class="weui-btn weui-btn_base"  onclick="signup('email',this)">SIGN UP</a>
             </div>
         </div>
     </div>
@@ -56,14 +56,14 @@
             </div>
         </div>
         <div class="page__bd page__bd_spacing margin-t-b-40">
-            <p id="phone" class="text-danger">Use my email address</p>
+            <p id="phone" class="text-base_mid">Use my email address</p>
         </div>
         <div class="weui-cells page__bd page__bd_spacing">
-            <a href="javascript:;" class="weui-btn weui-btn_primary" onclick="signup('phone',this)">SIGN UP</a>
+            <a href="javascript:;" class="weui-btn weui-btn_base" onclick="signup('phone',this)">SIGN UP</a>
         </div>
     </div>
     <div class="text-right page__bd page__bd_spacing">
-        <a href="{{ route('login') }}" class="text-primary">Had an account ?</a>
+        <a href="{{ route('login') }}" class="text-mute">Had an account ?</a>
     </div>
 @endsection
 
