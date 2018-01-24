@@ -3,7 +3,9 @@ Route::group(['namespace'=>'Home'],function(){
     Route::match(['get','post'],'login','HomeController@login')->name('login');
     Route::get('logout','HomeController@logout')->name('logout');
     Route::match(['get','post'],'regist','HomeController@regist')->name('regist');
-    Route::get('/merchant/{mchtid}','HomeController@index')->name('home');
+
+    Route::get('/combo/{package_id}','MchtController@combo')->name('merchant.combo');
+    Route::get('/merchant/{mchtid}','MchtController@merchant')->name('merchant.merchant');
     Route::get('/','HomeController@index')->name('home');
 
     Route::group(['prefix'=>'user'],function() {
@@ -14,6 +16,7 @@ Route::group(['namespace'=>'Home'],function(){
             Route::post('verify','UserController@verify')->name('user.verify');
         });
     });
+
     Route::group(['prefix'=>'merchant'],function (){
         Route::post('/','MchtController@index')->name('merchant');
     });

@@ -10,6 +10,7 @@ return [
         'codeVerify'    =>  'verify',
         //商品
         'merchant'          =>  'merchant',
+        'combo'             =>  'combo',
     ],
 
     //minutes

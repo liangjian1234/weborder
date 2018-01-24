@@ -52,7 +52,7 @@
 /*main.blade.php*/
 .bottom-main{position: fixed;bottom:0px}
 /*
- * Home index
+ * Mercahnt mercahnt
  */
 .list-items{padding:10px}
 .list-items .weui-flex__item{margin:10px;background-color:#fff;box-shadow:0 0 10px #c0bfc4}
@@ -63,3 +63,8 @@
 .list-item .item-desc{font-size:0.8em;color:#ccc}
 .list-item .item-cart div:nth-child(1){display:inline-block;width:48%;font-size:1.3em;}
 .list-item .item-cart div:nth-child(2){display:inline-block;width:48%;font-size:1.5em;}
+/*
+ *Merchant combo
+ */
+.list-combo .list-item{border-radius: 15px;box-shadow: 0 0 15px #ccc;}
+.list-combo .subtotal{border-radius: 15px;border:2px dashed #ccc;box-shadow:0 0 15px #ccc;}

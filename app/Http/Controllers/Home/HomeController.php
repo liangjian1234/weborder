@@ -20,38 +20,14 @@ class HomeController extends Controller
         $this->API_TOKEN_LIFETIME   = config('advancina.tokenLifetime');
     }
     //home首页
-    public function index(Request $request,$mchtid='')
+    public function index(Request $request)
     {
-        if($mchtid){
-            $data   =   [
-                'mcht_id'      => $mchtid,
-                'item_status'  => 'A',
-                'per_page'     => 10,
-                'page'          => 1,
-                'type'          => 'unlogin'
-            ];
-            $response = $this->getApiServerNone($data,$this->API_URL_MCHT,'get');
-            if($response->code===10000){
-                $cookie = cookie('merchant_id',$mchtid,0);
-                return response()->view('home.index',compact('mchtid'))->cookie($cookie);
-            }
-        }else{
-            $mchtid = $request->cookie('merchant_id');
-            if($mchtid){
-                $data   =   [
-                    'mcht_id'      => $mchtid,
-                    'item_status'  => 'A',
-                    'per_page'     => 10,
-                    'page'          => 1,
-                    'type'          => 'unlogin'
-                ];
-                $response = $this->getApiServerNone($data,$this->API_URL_MCHT,'get');
-                if($response->code===10000){
-                    return response()->view('home.index',compact('mchtid'));
-                }
-            }
+        $type = $request->cookie('scantype');
+        $value = $request->cookie('scanid');
+        if($type && $value){
+                return redirect('/'.$type.'/'.$value);
         }
-        return view('home.notfound');
+        return view('home.notfound',['msg'=>'Scan had expired , Please rescan !']);
     }
     //登录
     public function login(Request $request)
