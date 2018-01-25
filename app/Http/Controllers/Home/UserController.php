@@ -22,6 +22,9 @@ class UserController extends Controller
     //Profile页面
     public function index(Request $request)
     {
+        if($request->cookie('scantype') && $request->cookie('bearerToken')){
+            return redirect()->route('home');
+        }
         $user = $this->getUserInfo($request);
         return view('user.index',compact('user'));
     }
