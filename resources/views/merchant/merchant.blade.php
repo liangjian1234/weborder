@@ -218,7 +218,7 @@
                             }, {
                                 label: 'GO !',
                                 type: 'primary',
-                                onClick: function(){ location.href = "{{route('user')}}" }
+                                onClick: function(){ location.href = "{{route('login')}}" }
                             }]
                         });
                     }else{
@@ -269,7 +269,7 @@
                             }, {
                                 label: 'GO !',
                                 type: 'primary',
-                                onClick: function(){ location.href = "{{route('user')}}" }
+                                onClick: function(){ location.href = "{{route('login')}}" }
                             }]
                         });
                     }else{

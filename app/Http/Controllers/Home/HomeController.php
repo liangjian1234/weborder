@@ -33,12 +33,18 @@ class HomeController extends Controller
         if($request->ajax()){
             return $this->requestLoginRegist($request,$this->API_URL_LOGIN);
         }
-        return view('home.login');
+        $loc_href = 'user';
+        if(preg_match("/merchant/i",url()->previous())){
+            $loc_href = 'home';
+        }
+        return view('home.login',compact('loc_href'));
     }
     //登出
     public function logout(){
-        $cookie = cookie('bearerToken','',-1);
-        return response()->json()->cookie($cookie);
+        $cookie1 = cookie('bearerToken','',-1);
+        $cookie2 = cookie('scantype','',-1);
+        $cookie3 = cookie('scanid','',-1);
+        return response()->json()->cookie($cookie1)->cookie($cookie2)->cookie($cookie3);
     }
     //注册
     public function regist(Request $request)

@@ -76,6 +76,7 @@
     <script type="text/javascript">
         var email_flag = true;
         var phone_flag = true;
+        var loc_href = "{{route($loc_href)}}"
         $().ready(function() {
             $('.weui-tabbar_user').addClass('weui-bar__item_on').siblings().removeClass('weui-bar__item_on');
             $('#phone').on('click', function () {
@@ -126,7 +127,7 @@
                     loadingOn(tt);
                     $.post("{{route('login')}}",data,function (res){
                         if(res.code===100){
-                            location.href = "{{route('user')}}";
+                            location.href = loc_href;
                         }else{
                             weui.topTips(res.msg);
                             email_flag = true;
@@ -178,7 +179,7 @@
                     loadingOn(tt);
                     $.post("{{route('login')}}",data,function (res){
                         if(res.code===100){
-                            location.href = "{{route('user')}}";
+                            location.href = loc_href;
                         }else{
                             weui.topTips(res.msg);
                             loadingOff(tt);
