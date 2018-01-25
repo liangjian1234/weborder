@@ -2,15 +2,22 @@
 
 return [
     'api'       =>  [
-		'url'         	=>  env('API_URL','http://neworder.advancina.net/api/'),
-        'login'         =>  'login',
-        'regist'        =>  'signup',
+		'url'         	     =>  env('API_URL','http://neworder.advancina.net/api/'),
+        'login'             =>  'login',
+        'regist'            =>  'signup',
         //用户
-        'userInfo'      =>  'user/info',
-        'codeVerify'    =>  'verify',
-        //商品
+        'userInfo'          =>  'user/info',
+        'codeVerify'        =>  'verify',
+        //未登录商品
         'merchant'          =>  'merchant',
-        'combo'             =>  'combo',
+        'combo'              =>  'combo',
+        //登录商品
+        'item'              =>  'item',
+        'package'           =>  'package',
+        //商品收藏
+        'item_favorite'    =>   'item_favorite',
+        //购物车
+        'item_cart'         =>  'item_cart',
     ],
 
     //minutes

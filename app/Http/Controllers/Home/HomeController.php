@@ -10,13 +10,11 @@ class HomeController extends Controller
 {
     public $API_URL_LOGIN;
     public $API_URL_REGIST;
-    public $API_URL_MCHT;
     public $API_TOKEN_LIFETIME;
     public function __construct()
     {
         $this->API_URL_LOGIN        = config('advancina.api.url').config('advancina.api.login');
         $this->API_URL_REGIST       = config('advancina.api.url').config('advancina.api.regist');
-        $this->API_URL_MCHT         = config('advancina.api.url').config('advancina.api.merchant');
         $this->API_TOKEN_LIFETIME   = config('advancina.tokenLifetime');
     }
     //home首页

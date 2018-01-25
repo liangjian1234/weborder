@@ -58,8 +58,12 @@
         {{--</div>--}}
         {{--</div>--}}
     </div>
+    {{--购物车--}}
+    <div id="shopping-cart" class="shopping-cart hide">
+        <i class="fa fa-shopping-cart"></i>
+    </div>
     {{--回到顶部--}}
-    <div id="back-to-top" style="position: fixed;width: 50px;height:50px;bottom:125px;right:-8px;font-size:3em;color:#FF822E"></div>
+    <div id="back-to-top" class="back-to-top"></div>
 @endsection
 
 @section('main_js')
@@ -70,8 +74,8 @@
         })
     </script>
     <script type="text/javascript" charset="utf-8">
+        var merchant_id = "{{$mchtid}}";
         $(function(){
-            var merchant_id = "{{$mchtid}}";
             //创建MeScroll对象
             var mescroll = new MeScroll("mescroll", {
                 down: {
@@ -121,51 +125,29 @@
                     if(i+1<curPageData.length){
                         var newObj2=curPageData[i+1];
                     }
-                    var str1 = '<div class="weui-flex">\n' +
-                        '                <div class="weui-flex__item">\n' +
-                        '                    <div class="list-item">\n' +
-                        '                        <div class="item-favourite text-right text-base_mid">\n' +
-                        '                            <i class="fa fa-heart-o"></i>\n' +
-                        '                        </div>\n' +
-                        '                        <div class="item-img">\n' +
-                        '                            <img  class="center-block" src="'+newObj1.default_image_prefix+'/'+newObj1.default_image+'" alt="" style="width:100%">\n' +
-                        '                        </div>\n' +
-                        '                        <div class="item-name">\n' +
-                        newObj1.item_name+
-                        '                        </div>\n' +
-                        '                        <div class="item-desc">\n' +
-                        newObj1.item_desc+
-                        '                        </div>\n' +
-                        '                        <div class="item-cart">\n' +
-                        '                            <div>&dollar;'+newObj1.price+'</div>\n' +
-                        '                            <div class="text-right text-base_mid"><i class="fa fa-shopping-cart"></i></div>\n' +
-                        '                        </div>\n' +
-                        '                    </div>\n' +
-                        '                </div>\n' ;
+                    var str1_start = '<div class="weui-flex">\n' +'<div class="weui-flex__item">\n' +'<div class="list-item">\n';
+                    var str1_favourite1 =   (newObj1.added_to_favorite===true)?'<i class="fa fa-heart" onclick="my_favorite('+newObj1.item_id+',true,this)"></i>\n':'<i class="fa fa-heart-o" onclick="my_favorite('+newObj1.item_id+',false,this)"></i>\n';
+                    var str1_favourite =  '<div class="item-favourite text-right text-base_mid">\n'+str1_favourite1+'</div>\n';
+                    var str1_img ='<div class="item-img">\n' +'<img  class="center-block" src="'+newObj1.default_image_prefix+'/'+newObj1.default_image+'" alt="" style="width:100%">\n' + '</div>\n' ;
+                    var str1_name = '<div class="item-name">\n' +newObj1.item_name+'</div>\n';
+                    var str1_desc = '<div class="item-desc">\n' +newObj1.item_desc+'</div>\n';
+                    var str1_price = '<div class="item-cart">\n' +'<div>&dollar;'+newObj1.price+'</div>\n';
+                    var str1_cart1 = (newObj1.added_to_cart===true)?'<i class="fa fa-shopping-cart" onclick="my_cart('+newObj1.item_id+',true,this)"></i>\n':'<i class="fa fa-cart-plus" onclick="my_cart('+newObj1.item_id+',false,this)"></i>\n';
+                    var str1_cart = '<div class="text-right text-base_mid">'+str1_cart1+'</div>\n'+'</div>\n'+'</div>\n'+'</div>\n' ;
+                    var str1 = str1_start+str1_favourite+str1_img+str1_name+str1_desc+str1_price+str1_cart;
                     if (typeof(newObj2) == "undefined") {
                         var str = str1+'<div class="weui-flex__item item_none"></div><div>';
                     }else {
-                        var str2 = '    <div class="weui-flex__item">\n' +
-                            '                    <div class="list-item">\n' +
-                            '                        <div class="item-favourite text-right text-base_mid">\n' +
-                            '                            <i class="fa fa-heart-o"></i>\n' +
-                            '                        </div>\n' +
-                            '                        <div class="item-img">\n' +
-                            '                            <img  class="center-block" src="' + newObj2.default_image_prefix + '/' + newObj2.default_image + '" alt="" style="width:100%">\n' +
-                            '                        </div>\n' +
-                            '                        <div class="item-name">\n' +
-                            newObj2.item_name +
-                            '                        </div>\n' +
-                            '                        <div class="item-desc">\n' +
-                            newObj2.item_desc +
-                            '                        </div>\n' +
-                            '                        <div class="item-cart">\n' +
-                            '                            <div>&dollar;' + newObj2.price + '</div>\n' +
-                            '                            <div class="text-right text-base_mid"><i class="fa fa-shopping-cart"></i></div>\n' +
-                            '                        </div>\n' +
-                            '                    </div>\n' +
-                            '                </div>\n' +
-                            '            </div>';
+                        var str2_start = '<div class="weui-flex__item">\n' +'<div class="list-item">\n';
+                        var str2_favourite1 =   (newObj2.added_to_favorite===true)?'<i class="fa fa-heart" onclick="my_favorite('+newObj2.item_id+',true,this)"></i>\n':'<i class="fa fa-heart-o" onclick="my_favorite('+newObj2.item_id+',false,this)"></i>\n';
+                        var str2_favourite =  '<div class="item-favourite text-right text-base_mid">\n'+str2_favourite1+'</div>\n';
+                        var str2_img ='<div class="item-img">\n' +'<img  class="center-block" src="'+newObj2.default_image_prefix+'/'+newObj2.default_image+'" alt="" style="width:100%">\n' + '</div>\n' ;
+                        var str2_name = '<div class="item-name">\n' +newObj2.item_name+'</div>\n';
+                        var str2_desc = '<div class="item-desc">\n' +newObj2.item_desc+'</div>\n';
+                        var str2_price = '<div class="item-cart">\n' +'<div>&dollar;'+newObj2.price+'</div>\n';
+                        var str2_cart1 = (newObj2.added_to_cart===true)?'<i class="fa fa-shopping-cart" onclick="my_cart('+newObj2.item_id+',true,this)"></i>\n':'<i class="fa fa-cart-plus" onclick="my_cart('+newObj2.item_id+',false,this)"></i>\n';
+                        var str2_cart = '<div class="text-right text-base_mid">'+str2_cart1+'</div>\n'+'</div>\n'+'</div>\n' ;
+                        var str2 = str2_start+str2_favourite+str2_img+str2_name+str2_desc+str2_price+str2_cart;
                         var str = str1+str2
                     }
                     var liDom=document.createElement("div");
@@ -181,7 +163,7 @@
             var downIndex=0;
             function getListDataFromNet(pageNum,pageSize,successCallback,errorCallback) {
                 try{
-                    var data = {type:'unlogin',mcht_id:merchant_id,item_status:'A',per_page:pageSize,page:pageNum};
+                    var data = {mcht_id:merchant_id,item_status:'A',per_page:pageSize,page:pageNum};
                     $.post("{{route('merchant')}}",data,function(res){
                         // console.log(res)
                         if(res.code===10000){
@@ -194,7 +176,136 @@
                     errorCallback&&errorCallback();
                 }
             }
-
         });
+    </script>
+    {{--Functions--}}
+    <script type="text/javascript">
+        // 收藏
+        var favorite_flag = true;
+        function my_favorite(item_id,flag,tt){
+            if(favorite_flag){
+                favorite_flag = false;
+            }else{
+                return false;
+            }
+            if(flag){
+                var data = {type:'delete',item_id:item_id};
+                $(tt).removeClass('fa-heart').addClass('fa-heart-o');
+                $.post("{{route('user.favorite')}}",data,function(res){
+                    if(res.code===100){
+                        $(tt).attr('onclick',"my_favorite("+item_id+","+!flag+",this)");
+                    }else{
+                        $(tt).removeClass('fa-heart-o').addClass('fa-heart');
+                        weui.topTips(res.msg,{
+                            duration: 3000,
+                        });
+                    }
+                    favorite_flag = true;
+                })
+            }else{
+                var data = {type:'post',item_id:item_id};
+                $(tt).removeClass('fa-heart-o').addClass('fa-heart');
+                $.post("{{route('user.favorite')}}",data,function(res){
+                    if(res.code===100){
+                        $(tt).attr('onclick',"my_favorite("+item_id+","+!flag+",this)");
+                    }else if(res.code===200){
+                        $(tt).removeClass('fa-heart').addClass('fa-heart-o');
+                        weui.confirm('Ready to login in?', {
+                            buttons: [{
+                                label: 'NO',
+                                type: 'default',
+                                onClick: function(){  }
+                            }, {
+                                label: 'GO !',
+                                type: 'primary',
+                                onClick: function(){ location.href = "{{route('user')}}" }
+                            }]
+                        });
+                    }else{
+                        $(tt).removeClass('fa-heart').addClass('fa-heart-o');
+                        weui.topTips(res.msg);
+                    }
+                    favorite_flag = true;
+                })
+            }
+        }
+        //操作购物车
+        var cart_flag = true;
+        function my_cart(item_id,flag,tt) {
+            if (cart_flag) {
+                cart_flag = false;
+            } else {
+                return false;
+            }
+            if(flag){
+                var data = {type:'delete',item_id:item_id};
+                $(tt).removeClass('fa-shopping-cart').addClass('fa-cart-plus');
+                $.post("{{route('user.cart')}}",data,function(res){
+                    if(res.code===100){
+                        shop_cart();
+                        $(tt).attr('onclick',"my_cart("+item_id+","+!flag+",this)");
+                    }else{
+                        $(tt).removeClass('fa-cart-plus').addClass('fa-shopping-cart');
+                        weui.topTips(res.msg,{
+                            duration: 3000,
+                        });
+                    }
+                    cart_flag = true;
+                })
+            }else{
+                var data = {type:'post',item_id:item_id,mcht_id:merchant_id,item_num:1};
+                $(tt).removeClass('fa-cart-plus').addClass('fa-shopping-cart');
+                $.post("{{route('user.cart')}}",data,function(res){
+                    if(res.code===100){
+                        shop_cart();
+                        $(tt).attr('onclick',"my_cart("+item_id+","+!flag+",this)");
+                    }else if(res.code===200){
+                        $(tt).removeClass('fa-shopping-cart').addClass('fa-cart-plus');
+                        weui.confirm('Ready to login in?', {
+                            buttons: [{
+                                label: 'NO',
+                                type: 'default',
+                                onClick: function(){  }
+                            }, {
+                                label: 'GO !',
+                                type: 'primary',
+                                onClick: function(){ location.href = "{{route('user')}}" }
+                            }]
+                        });
+                    }else{
+                        $(tt).removeClass('fa-shopping-cart').addClass('fa-cart-plus');
+                        weui.topTips(res.msg);
+                    }
+                    cart_flag = true;
+                })
+            }
+        }
+        //购物车显示
+        function shop_cart(){
+            $.get("{{route('user.cart')}}", {}, function (res) {
+                if (!$.isEmptyObject(res)) {
+                    if (res.code === 10000) {
+                        var str = '';
+                        if (res.data.length != 0) {
+                            str = '<span class="weui-badge" >' + res.data.length + '</span>';
+                        }
+                        $('#shopping-cart').removeClass('hide');
+                        $('#shopping-cart').find('span').remove();
+                        $('#shopping-cart').append(str);
+                    } else {
+                        weui.topTips(res.msg);
+                    }
+                }
+            })
+        }
+        function shop_cart_asc(){
+
+        }
+        function shop_cart_desc(){
+
+        }
+        $().ready(function(){
+            shop_cart();
+        })
     </script>
 @endsection

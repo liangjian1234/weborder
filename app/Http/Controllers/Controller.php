@@ -13,7 +13,8 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     //获取API服务器 并反馈
-    public function requestApiServer($request,$url,$type){
+    public function requestApiServer($request,$url,$types){
+        $type   = strtolower($types);
         $data   = $request->all();
         $token  = $request->cookie('bearerToken');
         $res    = [
@@ -27,6 +28,8 @@ class Controller extends BaseController
                 $response = Curl::to($url)->withData($data)->withHeader('Authorization:Bearer '.$token)->asJsonResponse()->post();
             }else if($type=='put'){
                 $response = Curl::to($url)->withData($data)->withHeader('Authorization:Bearer '.$token)->asJsonResponse()->put();
+            }else if($type=='delete'){
+                $response = Curl::to($url)->withData($data)->withHeader('Authorization:Bearer '.$token)->asJsonResponse()->delete();
             }else{
                 $response = ['code'=>2018,'msg'=>'request error'];
             }
@@ -46,7 +49,7 @@ class Controller extends BaseController
     }
     //获取API服务器数据，携带token
     public function getApiServer($token,$data,$url,$type){
-        $res    = new \stdClass();
+        $res    = [];
         if($token){
             if($type=='get'){
                 $response = Curl::to($url)->withData($data)->withHeader('Authorization:Bearer '.$token)->asJsonResponse()->get();

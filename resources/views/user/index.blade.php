@@ -5,8 +5,8 @@
 @endsection
 
 @section('main_body')
-    @includeWhen(!isset($user),'user.unlogin')
-    @includeWhen(isset($user),'user.info',['user'=>$user])
+    @includeWhen(empty($user),'user.unlogin')
+    @includeWhen(!empty($user),'user.info',['user'=>$user])
 @endsection
 
 @section('main_js')
