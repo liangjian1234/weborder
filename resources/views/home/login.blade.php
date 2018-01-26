@@ -104,7 +104,7 @@
                     email_flag = true;
                     return false;
                 }else{
-                    if(email.indexOf('@')<1  ||  email.indexOf('.')<3){
+                    if(email.indexOf('@')<1){
                         weui.topTips("Email format invalid");
                         email_flag = true;
                         return false;
