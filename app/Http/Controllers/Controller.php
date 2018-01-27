@@ -60,9 +60,7 @@ class Controller extends BaseController
             }else{
                 $response = ['code'=>2018,'msg'=>'request error'];
             }
-            if($response->code===10000){
-                $res = $response;
-            }
+            $res = $response;
         }
         return $res;
     }

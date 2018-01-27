@@ -18,6 +18,8 @@ return [
         'item_favorite'    =>   'item_favorite',
         //购物车
         'item_cart'         =>  'item_cart',
+        //订单
+        'order'             =>  'order',
     ],
 
     //minutes

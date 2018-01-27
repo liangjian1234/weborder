@@ -20,5 +20,11 @@ Route::group(['namespace'=>'Home'],function(){
             Route::post('verify','UserController@verify')->name('user.verify');
         });
     });
+    Route::group(['prefix'=>'order'],function(){
+        Route::group(['middleware'=>'checktoken'],function() {
+            Route::post('/', 'OrderController@index')->name('order');
+            Route::get('{order_id}', 'OrderController@order');
+        });
+    });
 });
 

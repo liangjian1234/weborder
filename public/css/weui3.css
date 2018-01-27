@@ -6,6 +6,7 @@
 }
 .weui-loadmore_line{border-top:1px solid #FF822E;}
 .weui-loadmore_line .weui-loadmore__tips{color:#FF822E;background-color:#f8f8f8;}
+.weui-btn{border-radius:40px;}
 /*
  *  common
  */
@@ -46,6 +47,7 @@
 .hide{display:none;}
 .show{display:block;}
 .center-block{display:block;margin:0px auto}
+
 .weui-cell__bd{padding-left:10px}
 .weui-cells_top0{margin-top:0em}
 
@@ -71,4 +73,28 @@
  *Merchant combo
  */
 .list-combo .list-item{border-radius: 15px;box-shadow: 0 0 15px #ccc;}
-.list-combo .subtotal{border-radius: 15px;border:2px dashed #ccc;box-shadow:0 0 15px #ccc;}
+.list-combo .subtotal{border-radius: 15px;border:2px dashed #ccc;}
+.list-combo .list-item-price{padding: 0 20px 0px 15px;}
+.list-combo .list-item-price>span{display:inline-block;width:80px;}
+.list-combo .list-item-num span{ font-size:1em;display:inline-block;border:1px solid #ddd;width:35px;border-radius:7px;text-align:center;}
+.list-combo .list-item-num i{ font-size:1.3em;margin:0px 5px;color:#F56617;position:relative;top:2px}
+.package_order{position:fixed;bottom:60px;width:92%;z-index:999;}
+.combo_hide_height{height:70px}
+/*
+ *Order Details
+ */
+.order-details{border-radius: 15px;border:1px dashed #ccc;box-shadow: 0 0 15px #ccc;}
+.order-details .order-details-cell{padding:10px 15px}
+.order-details .placeholder{width:20%;padding: 0 10px;height: inherit;line-height: inherit;text-align: center;color: #cfcfcf;}
+
+
+
+/**/
+/*左滑动删除css*/
+.slidelefts {height: 100%;padding:0px;border-bottom: 1px solid  #eee;}
+.slidelefts>.weui-cell__bd {height: auto;overflow: hidden;position: relative;z-index: 10;background-color: #fff;padding: 10px 15px;}
+.weui-cell>.weui-cell__bd.animated {-webkit-transition: -webkit-transform .2s ease-out;transition: transform .2s ease-out;}
+.weui-cell .slideleft {height: 100%;display: -webkit-box;-webkit-box-pack: center;-webkit-box-align: center;position: absolute;top: 0;right: 0;z-index: 0;}
+.weui-cell .slideleft span {height: 100%;padding: 0 10px;display: -webkit-box;-webkit-box-pack: center;-webkit-box-align: center;}
+.slidelefts>.weui-cell__bd .weui-cell__bd{padding-left:0px}
+.slidelefts .weui-cell{padding:0px}

@@ -33,9 +33,9 @@ class HomeController extends Controller
         if($request->ajax()){
             return $this->requestLoginRegist($request,$this->API_URL_LOGIN);
         }
-        $loc_href = 'user';
-        if(preg_match("/merchant/i",url()->previous())){
-            $loc_href = 'home';
+        $loc_href = route('user');
+        if(preg_match("/merchant|combo/i",url()->previous())){
+            $loc_href = url()->previous();
         }
         return view('home.login',compact('loc_href'));
     }
