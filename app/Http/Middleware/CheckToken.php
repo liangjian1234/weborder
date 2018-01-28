@@ -17,7 +17,11 @@ class CheckToken
     {
         $token = $request->cookie('bearerToken');
         if(!$token){
-            return response()->json(['code'=>200,'msg'=>'You had logout']);
+            if($request->ajax()){
+                return response()->json(['code'=>200,'msg'=>'You had logout']);
+            }else{
+                return redirect()->route('login');
+            }
         }
         return $next($request);
     }

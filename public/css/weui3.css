@@ -83,11 +83,41 @@
 /*
  *Order Details
  */
+.order-details-container{box-sizing: border-box;height: 100%;overflow-y: scroll;}
 .order-details{border-radius: 15px;border:1px dashed #ccc;box-shadow: 0 0 15px #ccc;}
-.order-details .order-details-cell{padding:10px 15px}
-.order-details .placeholder{width:20%;padding: 0 10px;height: inherit;line-height: inherit;text-align: center;color: #cfcfcf;}
-
-
+.order-details .weui-cell__ft span{display:inline-block;width:75px;}
+.order-details .order-note{word-break:break-word}
+.order-details .weui-cell::before{border-top:none}
+.order-details .item_last::after{
+    content: " ";
+    position: absolute;
+    left: 5px;
+    bottom: 0;
+    right: 5px;
+    height: 1px;
+    border-bottom: 1px dashed red;
+    color: #e5e5e5;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+    z-index: 2;
+}
+.order-details .item_total::after{
+    content: " ";
+    position: absolute;
+    left: 0px;
+    bottom: 0;
+    right: 0px;
+    height: 1px;
+    border-bottom: 1px solid black;
+    color: #e5e5e5;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+    z-index: 2;
+}
 
 /**/
 /*左滑动删除css*/

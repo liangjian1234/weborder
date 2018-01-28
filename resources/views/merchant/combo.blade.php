@@ -142,6 +142,7 @@
                             location.href = "/order/"+res.data.order_id;
                         }else{
                             weui.topTips(res.msg);
+                            loadingOff(tt);
                             order_flag = true;
                         }
                     },'json')

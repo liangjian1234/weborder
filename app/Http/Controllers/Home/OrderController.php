@@ -43,13 +43,14 @@ class OrderController extends Controller
 
     //17242857
     public function order(Request $request,$order_id){
-        if($order_id){
-            $token = $request->cookie('bearerToken');
-            $response = $this->getApiServer($token,[],$this->API_URL_ORDER.'/'.$order_id,'get');
-            if($response->code===10000){
-                return view('order.order',['order'=>$response->data]);
-            }
-        }
+//        if($order_id){
+//            $token = $request->cookie('bearerToken');
+//            $response = $this->getApiServer($token,[],$this->API_URL_ORDER.'/'.$order_id,'get');
+//            if($response->code===10000){
+//                return view('order.order',['order'=>$response->data]);
+//            }
+//        }
+        return view('order.order');
         return view('home.notfound',['msg'=>'no order']);
     }
 }
