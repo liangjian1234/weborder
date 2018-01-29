@@ -16,8 +16,20 @@ class OrderController extends Controller
         $this->API_URL_COMBO = config('advancina.api.url').config('advancina.api.combo');
 
     }
-
+    //订单列表
     public function index(Request $request){
+        $token = $request->cookie('bearerToken');
+        $response = $this->getApiServer($token,[],$this->API_URL_ORDER,'get');
+        if($response->code===10000){
+            $orders = $response->data;
+            return view('order.index',compact('orders'));
+        }else if($response->code===401){
+            return redirect()->route('login');
+        }
+        return view('home.notfound',['msg'=>'error !']);
+    }
+    //下订单
+    public function store(Request $request){
         $token = $request->cookie('bearerToken');
         if($token){
             if($request->ajax()){
@@ -41,16 +53,24 @@ class OrderController extends Controller
         }
     }
 
-    //17242857
+    //订单详情17242857
     public function order(Request $request,$order_id){
-//        if($order_id){
-//            $token = $request->cookie('bearerToken');
-//            $response = $this->getApiServer($token,[],$this->API_URL_ORDER.'/'.$order_id,'get');
-//            if($response->code===10000){
-//                return view('order.order',['order'=>$response->data]);
-//            }
-//        }
-        return view('order.order');
+        if($order_id){
+            $order = null;
+            $token = $request->cookie('bearerToken');
+            $response = $this->getApiServer($token,[],$this->API_URL_ORDER.'/'.$order_id,'get');
+            if($response->code===10000){
+                $order = $response->data;
+            }else if($response->code===401){
+                return redirect()->route('login');
+            }
+//            dd($response);
+            return view('order.order',compact('order'));
+        }
         return view('home.notfound',['msg'=>'no order']);
+    }
+    //订单列表
+    public function list(){
+
     }
 }

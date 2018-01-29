@@ -22,8 +22,9 @@ Route::group(['namespace'=>'Home'],function(){
     });
     Route::group(['prefix'=>'order'],function(){
         Route::group(['middleware'=>'checktoken'],function() {
-            Route::post('/', 'OrderController@index')->name('order');
-            Route::get('{order_id}', 'OrderController@order');
+            Route::get('/', 'OrderController@index')->name('order');
+            Route::post('store', 'OrderController@store')->name('order.store');
+            Route::get('{order_id}', 'OrderController@order')->name('order.order');
         });
     });
 });

@@ -78,7 +78,7 @@
 </div>
 @include('user.about')
 <div class="page__bd page__bd_spacing">
-    <div class="weui-cells">
+    <div class="weui-cells weui-cells_none">
         <button class="weui-btn weui-btn_base btn-logout">LOG OUT</button>
     </div>
 </div>

@@ -26,7 +26,7 @@
             <p id="email" class="text-base_mid">Login via moblie</p>
         </div>
         <div class="page__bd page__bd_spacing">
-            <div class="weui-cells">
+            <div class="weui-cells weui-cells_none">
                 <a href="javascript:;" class="weui-btn weui-btn_base" onclick="login('email',this)">LOG IN</a>
             </div>
         </div>
@@ -57,7 +57,7 @@
             <p id="phone" class="text-base_mid">Login via email</p>
         </div>
         <div class="page__bd page__bd_spacing">
-            <div class="weui-cells">
+            <div class="weui-cells weui-cells_none">
                 <a href="javascript:;" class="weui-btn weui-btn_base" onclick="login('phone',this)">LOG IN</a>
             </div>
         </div>
@@ -66,7 +66,7 @@
         <div class="text-right">
             <a href="" class="text-mute">Forgot for password ?</a>
         </div>
-        <div class="weui-cells">
+        <div class="weui-cells weui-cells_none">
             <a href="{{ route('regist') }}" class="weui-btn weui-btn_plain-base">SIGN UP</a>
         </div>
     </div>
@@ -76,7 +76,7 @@
     <script type="text/javascript">
         var email_flag = true;
         var phone_flag = true;
-        var loc_href = "{{$loc_href}}"
+        var loc_href = "{{$loc_href}}";
         $().ready(function() {
             $('.weui-tabbar_user').addClass('weui-bar__item_on').siblings().removeClass('weui-bar__item_on');
             $('#phone').on('click', function () {

@@ -27,7 +27,7 @@
             <p id="email" class="text-base_mid">Use my mobile number</p>
         </div>
         <div class="page__bd page__bd_spacing">
-            <div class="weui-cells">
+            <div class="weui-cells  weui-cells_none">
                 <a href="javascript:;" class="weui-btn weui-btn_base"  onclick="signup('email',this)">SIGN UP</a>
             </div>
         </div>
@@ -58,7 +58,7 @@
         <div class="page__bd page__bd_spacing margin-t-b-40">
             <p id="phone" class="text-base_mid">Use my email address</p>
         </div>
-        <div class="weui-cells page__bd page__bd_spacing">
+        <div class="weui-cells page__bd page__bd_spacing weui-cells_none">
             <a href="javascript:;" class="weui-btn weui-btn_base" onclick="signup('phone',this)">SIGN UP</a>
         </div>
     </div>

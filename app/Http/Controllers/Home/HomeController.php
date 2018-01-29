@@ -36,6 +36,7 @@ class HomeController extends Controller
         $loc_href = route('user');
         if(preg_match("/merchant|combo/i",url()->previous())){
             $loc_href = url()->previous();
+
         }
         return view('home.login',compact('loc_href'));
     }

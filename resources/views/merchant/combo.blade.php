@@ -123,7 +123,7 @@
                     var data = {items:items,order_note:order_note};
                     loadingOn(this);
                     var tt = this;
-                    $.post("{{route('order')}}",data,function(res){
+                    $.post("{{route('order.store')}}",data,function(res){
                         if(res.code===200){
                             weui.confirm('Ready to login in?', {
                                 buttons: [{
