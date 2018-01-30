@@ -8,6 +8,8 @@ return [
         //用户
         'userInfo'          =>  'user/info',
         'codeVerify'        =>  'verify',
+        //商户
+        'mcht'               => 'mcht',
         //未登录商品
         'merchant'          =>  'merchant',
         'combo'              =>  'combo',

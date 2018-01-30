@@ -8,11 +8,13 @@ use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
+    public $API_URL_MCHT;
     public $API_URL_LOGIN;
     public $API_URL_REGIST;
     public $API_TOKEN_LIFETIME;
     public function __construct()
     {
+        $this->API_URL_MCHT        = config('advancina.api.url').config('advancina.api.mcht');
         $this->API_URL_LOGIN        = config('advancina.api.url').config('advancina.api.login');
         $this->API_URL_REGIST       = config('advancina.api.url').config('advancina.api.regist');
         $this->API_TOKEN_LIFETIME   = config('advancina.tokenLifetime');
@@ -20,12 +22,16 @@ class HomeController extends Controller
     //home首页
     public function index(Request $request)
     {
-        $type = $request->cookie('scantype');
-        $value = $request->cookie('scanid');
-        if($type && $value){
-                return redirect('/'.$type.'/'.$value);
+        if($request->ajax()){
+            $data = $request->all();
+            $mchts = null;
+            $response = $this->getApiServerNone($data,$this->API_URL_MCHT,'get');
+            if($response->code===10000){
+                $mchts = $response;
+            }
+            return response()->json($mchts);
         }
-        return view('home.notfound',['msg'=>'Scan had expired , Please rescan !']);
+        return view('home.index');
     }
     //登录
     public function login(Request $request)
@@ -34,10 +40,10 @@ class HomeController extends Controller
             return $this->requestLoginRegist($request,$this->API_URL_LOGIN);
         }
         $loc_href = route('user');
-        if(preg_match("/merchant|combo/i",url()->previous())){
+        if(!preg_match("/regist/i",url()->previous())){
             $loc_href = url()->previous();
-
         }
+//        dd($loc_href);
         return view('home.login',compact('loc_href'));
     }
     //登出

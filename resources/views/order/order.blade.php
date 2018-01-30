@@ -22,7 +22,7 @@
                     {{$item->item_name}}
                 </div>
                 <div class="weui-cell__ft  @if($loop->last) item_last @endif">
-                    <span class="text-center">{{$item->item_num}}</span>
+                    <span class="text-center">&times;{{$item->item_num}}</span>
                     <span>&dollar;{{$item->item_price}}</span>
                 </div>
             </div>

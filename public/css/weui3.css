@@ -32,6 +32,7 @@
 .weui-btn_base_dl{background: linear-gradient(to right,#EC4F02,#FF822E);}
 .weui-btn_plain-base{color: #F56617;border: 1px solid #F56617;}
 /*fonnt-size*/
+.f_08{font-size:0.8em !important;}
 .f_1{font-size:1em}
 .f_13{font-size:1.3em}
 .f_15{font-size:1.5em}
@@ -60,7 +61,7 @@
 .shopping-cart{position: fixed;width: 40px;height:40px;border:1px solid #586c94;border-radius:40px;bottom:125px;right:2px;}
 .shopping-cart .fa{position: absolute;top: 8px;left: 6px;color:#586c94;font-size:1.6em}
 .shopping-cart .weui-badge{position: absolute;top: -0.5em;right:-0.2em;}
-.back-to-top{position: fixed;width: 50px;height:50px;bottom:125px;left:0px;font-size:3em;color:#FF822E}
+.back-to-top{position: fixed;width: 50px;height:50px;bottom:125px;left:0px;font-size:3em;color:#FF822E;z-index:999;}
 .list-items{padding:10px}
 .list-items .weui-flex__item{margin:10px;background-color:#fff;box-shadow:0 0 10px #c0bfc4}
 .list-items .weui-flex__item.item_none{margin:10px;background-color:transparent;box-shadow:none}

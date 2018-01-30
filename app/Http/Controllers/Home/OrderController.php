@@ -69,8 +69,4 @@ class OrderController extends Controller
         }
         return view('home.notfound',['msg'=>'no order']);
     }
-    //订单列表
-    public function list(){
-
-    }
 }

@@ -8,7 +8,7 @@ Route::group(['namespace'=>'Home'],function(){
     Route::get('merchant/{mchtid}','MchtController@merchant')->name('merchant.merchant');
     Route::get('combo/{package_id}','MchtController@combo')->name('merchant.combo');
 
-    Route::get('/','HomeController@index')->name('home');
+    Route::match(['get','post'],'/','HomeController@index')->name('home');
 
     Route::group(['prefix'=>'user'],function() {
         Route::get('/','UserController@index')->name('user');
