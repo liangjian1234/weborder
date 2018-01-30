@@ -45,9 +45,7 @@ class MchtController extends Controller
                 ];
                 $response = $this->getApiServer($token,$data, $this->API_URL_ITEM, 'get');
                 if ($response->code === 10000) {
-                    $cookie1 = cookie('scantype', 'merchant', 0);
-                    $cookie2 = cookie('scanid', $mchtid, 0);
-                    return response()->view('merchant.merchant', compact('mchtid'))->withCookie($cookie1)->withCookie($cookie2);
+                    return response()->view('merchant.merchant', compact('mchtid'));
                 }
             }else {
                 $data = [
@@ -59,9 +57,7 @@ class MchtController extends Controller
                 ];
                 $response = $this->getApiServerNone($data, $this->API_URL_MCHT, 'get');
                 if ($response->code === 10000) {
-                    $cookie1 = cookie('scantype', 'merchant', 0);
-                    $cookie2 = cookie('scanid', $mchtid, 0);
-                    return response()->view('merchant.merchant', compact('mchtid'))->withCookie($cookie1)->withCookie($cookie2);
+                    return response()->view('merchant.merchant', compact('mchtid'));
                 }
             }
         }
@@ -73,10 +69,8 @@ class MchtController extends Controller
             $data   =   [];
             $response = $this->getApiServerNone($data,$this->API_URL_COMBO.'/'.$package_id,'get');
             if($response->code===10000){
-                $cookie1 = cookie('scantype','combo',0);
-                $cookie2 = cookie('scanid',$package_id,0);
                 $package = $response->data;
-                return response()->view('merchant.combo',compact('package'))->withCookie($cookie1)->withCookie($cookie2);
+                return response()->view('merchant.combo',compact('package','package_id'));
             }
         }
         return view('home.notfound',['msg'=>'Package Not Found !']);

@@ -48,10 +48,8 @@ class HomeController extends Controller
     }
     //登出
     public function logout(){
-        $cookie1 = cookie('bearerToken','',-1);
-        $cookie2 = cookie('scantype','',-1);
-        $cookie3 = cookie('scanid','',-1);
-        return response()->json()->cookie($cookie1)->cookie($cookie2)->cookie($cookie3);
+        $cookie = cookie('bearerToken','',-1);
+        return response()->json()->cookie($cookie);
     }
     //注册
     public function regist(Request $request)

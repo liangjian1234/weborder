@@ -33,7 +33,7 @@ class OrderController extends Controller
         $token = $request->cookie('bearerToken');
         if($token){
             if($request->ajax()){
-                $package_id = $request->cookie('scanid');
+                $package_id = $request->post('package_id');
                 $combo = $this->getApiServerNone([],$this->API_URL_COMBO.'/'.$package_id,'get');
                 if($combo->code===10000){
                     $data = [

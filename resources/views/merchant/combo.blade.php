@@ -81,6 +81,7 @@
 
 @section('main_js')
     <script type="text/javascript">
+        var package_id = "{{$package_id}}";
         $().ready(function(){
             $('.weui-tabbar_home').addClass('weui-bar__item_on').siblings().removeClass('weui-bar__item_on');
             subtotal();
@@ -120,7 +121,7 @@
                 }else{
                     var items = arr;
                     var order_note = $.trim($('#order_note').val())
-                    var data = {items:items,order_note:order_note};
+                    var data = {package_id:package_id,items:items,order_note:order_note};
                     loadingOn(this);
                     var tt = this;
                     $.post("{{route('order.store')}}",data,function(res){
