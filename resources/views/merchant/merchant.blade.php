@@ -10,7 +10,7 @@
     <div class="weui-cells weui-cells_top0 bg-base_light text-white">
         <div class="weui-cell">
             <div class="weui-cell__hd" onclick="location.href='{{route('home')}}'">
-                <i class="fa fa-angle-left"></i> Back
+                <i class="fa fa-angle-left"></i>
             </div>
             <div class="weui-cell__bd text-center">
                 <p>{{$mchtid}}</p>

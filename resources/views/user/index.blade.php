@@ -25,40 +25,6 @@
                         history.go(0);
                     },'json')
                 })
-                $('#changeStateCity').on('click',function(){
-                    weui.picker([
-                        {
-                            label: '1',
-                            value: '1'
-                        }, {
-                            label: '2',
-                            value: '2'
-                        }, {
-                            label: '3',
-                            value: '3'
-                        }
-                    ], [
-                        {
-                            label: 'A',
-                            value: 'A'
-                        }, {
-                            label: 'B',
-                            value: 'B'
-                        }, {
-                            label: 'C',
-                            value: 'C'
-                        }
-                    ], {
-                        defaultValue: ['1', 'A'],
-                        onChange: function (result) {
-                            console.log(result);
-                        },
-                        onConfirm: function (result) {
-                            console.log(result);
-                        },
-                        id: 'multiPickerBtn'
-                    });
-                })
             })
         </script>
     @endisset

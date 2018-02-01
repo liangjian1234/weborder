@@ -16,11 +16,13 @@
 .text-base_light{color:#FF822E}
 .text-base_mid{color:#F56617}
 .text-base_dark{color:#EC4F02}
+.text-black{color:black;}
 .text-primary{color:#1aad19;}
 .text-danger{color:#E64340;}
 .text-warn{color:#FFBE00;}
 .text-blue{color:#1E89E0;}
 .text-mute{color:#c7c7c7;}
+.text-muted{color:#999;}
 .text-white{color:#fff;}
 /*基础背景色*/
 .bg-base_light{background-color:#FF822E;}
@@ -127,8 +129,10 @@
     transform: scaleY(.5);
     z-index: 2;
 }
-
-/**/
+/*
+ * user
+ */
+.user-info .weui-cell_access .weui-cell__ft::after{border-color:#fff}
 /*左滑动删除css*/
 .slidelefts {height: 100%;padding:0px;border-bottom: 1px solid  #eee;}
 .slidelefts>.weui-cell__bd {height: auto;overflow: hidden;position: relative;z-index: 10;background-color: #fff;padding: 10px 15px;}

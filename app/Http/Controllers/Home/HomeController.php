@@ -12,11 +12,13 @@ class HomeController extends Controller
     public $API_URL_LOGIN;
     public $API_URL_REGIST;
     public $API_TOKEN_LIFETIME;
+    public $API_URL_AVAILABLE;
     public function __construct()
     {
         $this->API_URL_MCHT        = config('advancina.api.url').config('advancina.api.mcht');
         $this->API_URL_LOGIN        = config('advancina.api.url').config('advancina.api.login');
         $this->API_URL_REGIST       = config('advancina.api.url').config('advancina.api.regist');
+        $this->API_URL_AVAILABLE       = config('advancina.api.url').config('advancina.api.available');
         $this->API_TOKEN_LIFETIME   = config('advancina.tokenLifetime');
     }
     //home首页
@@ -40,7 +42,7 @@ class HomeController extends Controller
             return $this->requestLoginRegist($request,$this->API_URL_LOGIN);
         }
         $loc_href = route('user');
-        if(!preg_match("/regist/i",url()->previous())){
+        if(!preg_match("/regist|login/i",url()->previous())){
             $loc_href = url()->previous();
         }
 //        dd($loc_href);
@@ -52,7 +54,7 @@ class HomeController extends Controller
         return response()->json()->cookie($cookie);
     }
     //注册
-    public function regist(Request $request)
+    public function regist(Request $request,$type='')
     {
         if($request->ajax()){
             return $this->requestLoginRegist($request,$this->API_URL_REGIST);
@@ -61,6 +63,8 @@ class HomeController extends Controller
     }
     //处理登录注册请求
     public function requestLoginRegist($request,$url){
+        $data['lname'] = $request->post('lname');
+        $data['fname'] = $request->post('fname');
         $data['email'] = $request->post('email');
         $data['mobile'] = $request->post('phone');
         $data['password'] = $request->post('password');
@@ -83,5 +87,12 @@ class HomeController extends Controller
             ];
             return response()->json($res);
         }
+    }
+    //查看账号是否可用
+    public function available(Request $request){
+        $data['type'] = $request->post('type');
+        $data['value'] = $request->post('value');
+        $response = $this->getApiServerNone($data,$this->API_URL_AVAILABLE,'get');
+        return response()->json($response);
     }
 }

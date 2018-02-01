@@ -5,6 +5,7 @@ return [
 		'url'         	     =>  env('API_URL','http://neworder.advancina.net/api/'),
         'login'             =>  'login',
         'regist'            =>  'signup',
+        'available'            =>  'account/available',
         //用户
         'userInfo'          =>  'user/info',
         'codeVerify'        =>  'verify',

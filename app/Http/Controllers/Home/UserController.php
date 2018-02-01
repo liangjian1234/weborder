@@ -25,7 +25,11 @@ class UserController extends Controller
         $user = $this->getUserInfo($request);
         return view('user.index',compact('user'));
     }
-
+    //settings
+    public function settings(Request $request){
+        $user = $this->getUserInfo($request);
+        return view('user.settings',compact('user'));
+    }
     //修改用户信息
     public function edit(Request $request){
         if($request->ajax()){

@@ -68,7 +68,7 @@
                     weui.toast('Verified', {
                         duration: 2000,
                         callback: function(){
-                            location.href = "{{route('user')}}";
+                            location.href = "{{route('user.settings')}}";
                         }
                     });
                 }else{

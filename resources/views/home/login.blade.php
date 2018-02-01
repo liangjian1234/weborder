@@ -7,23 +7,27 @@
 @section('base_body')
     <div id="email-pannel" class="show">
         <div class="weui-cells weui-cells_form">
-            <div class="weui-cells__title"><i class="fa fa-envelope"></i></div>
             <div class="weui-cell">
+                <div class="weui-cell__hd text-muted">
+                    <i class="fa fa-envelope"></i>
+                </div>
                 <div class="weui-cell__bd">
                     <input class="weui-input" name="email" type="text" placeholder="Enter your email">
                 </div>
             </div>
         </div>
         <div class="weui-cells weui-cells_form">
-            <div class="weui-cells__title"><i class="fa fa-lock"></i></div>
             <div class="weui-cell">
+                <div class="weui-cell__hd text-muted">
+                    <i class="fa fa-lock"></i>
+                </div>
                 <div class="weui-cell__bd">
                     <input class="weui-input" name="password" type="password" placeholder="Enter your password">
                 </div>
             </div>
         </div>
         <div class="page__bd page__bd_spacing margin-t-b-40">
-            <p id="email" class="text-base_mid">Login via moblie</p>
+            <p id="email" class="text-base_mid text-center">Login via moblie</p>
         </div>
         <div class="page__bd page__bd_spacing">
             <div class="weui-cells weui-cells_none">
@@ -33,7 +37,6 @@
     </div>
     <div id="phone-pannel" class="hide">
         <div class="weui-cells">
-            <div class="weui-cells__title"><i class="fa fa-phone"></i></div>
             <div class="weui-cell weui-cell_select weui-cell_select-before">
                 <div class="weui-cell__hd">
                     <select class="weui-select" name="country_code">
@@ -46,15 +49,17 @@
             </div>
         </div>
         <div class="weui-cells weui-cells_form">
-            <div class="weui-cells__title"><i class="fa fa-lock"></i></div>
             <div class="weui-cell">
+                <div class="weui-cell__hd text-muted">
+                    <i class="fa fa-lock"></i>
+                </div>
                 <div class="weui-cell__bd">
                     <input class="weui-input" name="password" type="password" placeholder="Enter your password">
                 </div>
             </div>
         </div>
         <div class="page__bd page__bd_spacing margin-t-b-40">
-            <p id="phone" class="text-base_mid">Login via email</p>
+            <p id="phone" class="text-base_mid text-center">Login via email</p>
         </div>
         <div class="page__bd page__bd_spacing">
             <div class="weui-cells weui-cells_none">
@@ -63,8 +68,10 @@
         </div>
     </div>
     <div class="page__bd page__bd_spacing">
-        <div class="text-right">
-            <a href="" class="text-mute">Forgot for password ?</a>
+        <div class="weui-cells weui-cells_none">
+            <div class="text-center">
+                <a href="" class="text-mute">Forgot for password ?</a>
+            </div>
         </div>
         <div class="weui-cells weui-cells_none">
             <a href="{{ route('regist') }}" class="weui-btn weui-btn_plain-base">SIGN UP</a>
