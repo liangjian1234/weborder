@@ -13,11 +13,11 @@ Route::group(['namespace'=>'Home'],function(){
 
     Route::group(['prefix'=>'user'],function() {
         Route::get('/','UserController@index')->name('user');
-        Route::get('settings','UserController@settings')->name('user.settings');
-        Route::match(['get','post'],'item_favorite','UserController@item_favorite')->name('user.favorite');
-        Route::match(['get','post'],'item_cart','UserController@item_cart')->name('user.cart');
 
         Route::group(['middleware'=>'checktoken'],function(){
+            Route::get('settings','UserController@settings')->name('user.settings');
+            Route::match(['get','post'],'item_favorite','UserController@item_favorite')->name('user.favorite');
+            Route::match(['get','post'],'item_cart','UserController@item_cart')->name('user.cart');
             Route::match(['get','post'],'edit','UserController@edit')->name('user.edit');
             Route::post('verify','UserController@verify')->name('user.verify');
         });

@@ -7,6 +7,7 @@
 .weui-loadmore_line{border-top:1px solid #FF822E;}
 .weui-loadmore_line .weui-loadmore__tips{color:#FF822E;background-color:#f8f8f8;}
 .weui-btn{border-radius:40px;}
+.weui-switch-cp__input:checked~.weui-switch-cp__box, .weui-switch:checked{border-color: #ec4f02;background-color: #ec4f02;}
 /*
  *  common
  */

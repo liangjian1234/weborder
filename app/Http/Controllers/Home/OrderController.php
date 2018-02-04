@@ -33,20 +33,35 @@ class OrderController extends Controller
         $token = $request->cookie('bearerToken');
         if($token){
             if($request->ajax()){
-                $package_id = $request->post('package_id');
-                $combo = $this->getApiServerNone([],$this->API_URL_COMBO.'/'.$package_id,'get');
-                if($combo->code===10000){
+                $type = $request->post('type');
+                if($type==3) {
+                    $package_id = $request->post('package_id');
+                    $combo = $this->getApiServerNone([], $this->API_URL_COMBO . '/' . $package_id, 'get');
+                    if ($combo->code === 10000) {
+                        $data = [
+                            'items' => json_encode($request->post('items')),
+                            'order_note' => $request->post('order_note'),
+                            'mcht_id' => $combo->data->mcht_id,
+                            'order_type' => $combo->data->avail_order_type,
+                            'pay_now_flag' => 'N',
+                        ];
+                        $response = $this->getApiServer($token, $data, $this->API_URL_ORDER, 'post');
+                        return response()->json($response);
+                    }
+                    return response()->json($combo);
+                }else if($type==1 || $type==2){
+                    //TODO判断？
                     $data = [
-                        'items'           =>  json_encode($request->post('items')),
-                        'order_note'    =>  $request->post('order_note'),
-                        'mcht_id'       =>   $combo->data->mcht_id,
-                        'order_type'    =>  $combo->data->avail_order_type,
-                        'pay_now_flag'  =>  'N',
+                        'items' => json_encode($request->post('items')),
+                        'order_note' => $request->post('order_note'),
+                        'mcht_id' => $request->post('mcht_id'),
+                        'order_type' => $request->post('order_type'),
+                        'seat_mcht_id' => $request->post('seat_mcht_id'),
+                        'pay_now_flag' => 'N',
                     ];
-                    $response = $this->getApiServer($token,$data,$this->API_URL_ORDER,'post');
+                    $response = $this->getApiServer($token, $data, $this->API_URL_ORDER, 'post');
                     return response()->json($response);
                 }
-                return response()->json($combo);
             }
         }else{
             return response()->json(['code'=>200,'msg'=>'You had logout']);

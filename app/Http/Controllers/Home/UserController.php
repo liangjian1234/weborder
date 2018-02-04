@@ -95,10 +95,23 @@ class UserController extends Controller
                 return $this->requestApiServer($request,$this->API_URL_USER_CART.'/'.$item_id,'delete');
             }
         }
-        if($request->isMethod('get')){
-            $token = $request->cookie('bearerToken');
-            $response = $this->getApiServer($token,[],$this->API_URL_USER_CART,'get');
-            return response()->json($response);
+        if($request->ajax()){
+            if($request->isMethod('get')){
+                $token = $request->cookie('bearerToken');
+                $response = $this->getApiServer($token,[],$this->API_URL_USER_CART,'get');
+                return response()->json($response);
+            }
+        }else{
+            if($request->isMethod('get')){
+                $token = $request->cookie('bearerToken');
+                $response = $this->getApiServer($token,[],$this->API_URL_USER_CART,'get');
+                $carts = null;
+                if($response->code===10000){
+                    $carts = $response->data;
+                }
+//                dd($carts);
+                return view('user.cart',compact('carts'));
+            }
         }
     }
 }

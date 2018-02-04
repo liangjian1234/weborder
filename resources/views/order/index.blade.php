@@ -1,6 +1,6 @@
 @extends('layout.main')
 
-@section('title','My Orders')
+@section('main_title','My Orders')
 
 @section('main_body')
     @forelse($orders as $order)

@@ -62,7 +62,7 @@
         {{--</div>--}}
     </div>
     {{--购物车--}}
-    <div id="shopping-cart" class="shopping-cart hide">
+    <div id="shopping-cart" class="shopping-cart hide" onclick="location.href='{{route('user.cart')}}'">
         <i class="fa fa-shopping-cart"></i>
     </div>
     {{--回到顶部--}}
@@ -181,7 +181,7 @@
                 try{
                     var data = {mcht_id:merchant_id,item_status:'A',per_page:pageSize,page:pageNum};
                     $.post("{{route('merchant')}}",data,function(res){
-                        console.log(res)
+                        // console.log(res)
                         if(res.code===10000){
                             var newArr = res.data;
                             var pages = res.meta.last_page;
@@ -308,17 +308,12 @@
                         $('#shopping-cart').removeClass('hide');
                         $('#shopping-cart').find('span').remove();
                         $('#shopping-cart').append(str);
-                    } else {
-                        weui.topTips(res.msg);
                     }
+                    // else {
+                    //     weui.topTips(res.msg);
+                    // }
                 }
             })
-        }
-        function shop_cart_asc(){
-
-        }
-        function shop_cart_desc(){
-
         }
         $().ready(function(){
             shop_cart();

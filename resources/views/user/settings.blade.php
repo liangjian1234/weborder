@@ -98,7 +98,7 @@
                     onConfirm: function (result) {
                         console.log(result);
                     },
-                    id: 'multiPickerBtn'
+                    id: 'changeStateCity'
                 });
             })
         })

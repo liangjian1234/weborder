@@ -1,6 +1,6 @@
 @extends('layout.main')
 
-@section('main_title','Home')
+@section('main_title','Cart')
 
 @section('main_head')
 @endsection
@@ -8,47 +8,51 @@
 @section('main_body')
     <div class="weui-cells weui-cells_top0 bg-base_light text-white">
         <div class="weui-cell">
-            <div class="weui-cell__bd">
-                <p>{{$package->package_name}} --- {{$package->mcht_name}}</p>
-                <p>{{$package->package_desc}}</p>
+            <div class="weui-cell__hd goto-previous">
+                <i class="fa fa-angle-left"></i>
+            </div>
+            <div class="weui-cell__bd text-center">
+                <p>Shopping cart</p>
             </div>
         </div>
     </div>
 
     <div class="page__bd_spacing list-combo">
         <div class="weui-cells list-item">
-            @forelse($package->package_item as $item)
-            <div class="weui-cell slidelefts">
-                <div class="weui-cell__bd">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <div class="weui-cell weui-cell-name-price">
-                                <div class="weui-cell__bd list-item-name">
-                                    {{$item->item_name}}
-                                    <input type="hidden" name="item_id" value="{{$item->item_id}}">
-                                </div>
-                                <div class="weui-cell__ft text-center list-item-price">
+            @forelse($carts as $item)
+                @if($loop->first)
+                    <input type="hidden" name="mcht_id" value="{{$item->mcht_id}}">
+                @endif
+                <div class="weui-cell slidelefts">
+                    <div class="weui-cell__bd">
+                        <div class="weui-cell">
+                            <div class="weui-cell__bd">
+                                <div class="weui-cell weui-cell-name-price">
+                                    <div class="weui-cell__bd list-item-name">
+                                        {{$item->item_name}}
+                                        <input type="hidden" name="item_id" value="{{$item->item_id}}">
+                                    </div>
+                                    <div class="weui-cell__ft text-center list-item-price">
                                     <span>
                                         &dollar;<span>{{$item->item_price}}</span>
                                     </span>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="weui-cell__ft text-right list-item-num"><i class="fa fa-minus-circle" onclick="item_num('desc',this)"></i><span>{{$item->item_num}}</span><i class="fa fa-plus-circle" onclick="item_num('asc',this)"></i></div>
                         </div>
-                        <div class="weui-cell__ft text-right list-item-num"><i class="fa fa-minus-circle" onclick="item_num('desc',this)"></i><span>{{$item->item_num}}</span><i class="fa fa-plus-circle" onclick="item_num('asc',this)"></i></div>
+                    </div>
+                    <div class="slideleft">
+                        <span class="bg-base_dark text-white dels">Delete</span>
                     </div>
                 </div>
-                <div class="slideleft">
-                    <span class="bg-base_dark text-white dels">Delete</span>
-                </div>
-            </div>
-
             @empty
                 <div class="weui-cell">
-                    empty data !
+                    Your shopping cart is empty !
                 </div>
             @endforelse
         </div>
-        @if(!empty($package->package_item))
+        @if(!empty($carts))
             <div class="weui-cells subtotal">
                 <div class="weui-cell">
                     <div class="weui-cell__bd">
@@ -56,6 +60,27 @@
                     </div>
                     <div class="weui-cell__ft text-right">&dollar;0.00</div>
                 </div>
+            </div>
+            <div class="weui-cells weui-cells_form list-item" id="take-out">
+                <div class="weui-cell weui-cell_switch">
+                    <div class="weui-cell__bd">Take Out ?</div>
+                    <div class="weui-cell__ft">
+                        <label for="takeout" class="weui-switch-cp">
+                            <input id="takeout" class="weui-switch-cp__input" type="checkbox">
+                            <div class="weui-switch-cp__box"></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="weui-cells list-item" id="choose-table">
+                <a class="weui-cell weui-cell_access" id="choosetable">
+                    <div class="weui-cell__bd">
+                        Choose Table
+                    </div>
+                    <div class="weui-cell__ft" >
+                        # <span id="tableno"></span>
+                    </div>
+                </a>
             </div>
             <div class="weui-cells list-item note_order">
                 <div class="weui-cell">
@@ -81,15 +106,30 @@
 
 @section('main_js')
     <script type="text/javascript">
-        var package_id = "{{$package_id}}";
+        {{--var package_id = "{{$package_id}}";--}}
         $().ready(function(){
             $('.weui-tabbar_home').addClass('weui-bar__item_on').siblings().removeClass('weui-bar__item_on');
             subtotal();
+            $('.goto-previous').on('click',function(){
+                {{--var mcht = $.trim($('input[name="mcht_id"]').val());--}}
+                {{--var url = "{{url('merchant')}}"+"/"+mcht;--}}
+                    window.location.href = document.referrer;
+            })
             //删除
             $('.dels').on('click',function(){
-                $(this).parent().parent().slideUp(function () {
-                    $(this).remove();
-                    subtotal();
+                var item_id = $.trim($(this).parent().parent().find("input[name='item_id']").val());
+                var data = {type:'delete',item_id:item_id};
+                var item = $(this).parent().parent();
+                item.slideUp(function () {
+                    $.post("{{route('user.cart')}}",data,function(res) {
+                        if (res.code === 100) {
+                            item.remove();
+                        }else{
+                            item.slideDown();
+                            weui.topTips(res.msg);
+                        }
+                        subtotal();
+                    })
                 });
             })
             //添加说明
@@ -119,9 +159,25 @@
                     weui.topTips('You have no item!');
                     order_flag = true;
                 }else{
+                    var takeout = $('#takeout').prop('checked');
+                    if(takeout){
+                        var order_type = 2;
+                        var seat_mcht_id = '';
+                    }else{
+                        var order_type = 1;
+                        var seat_mcht_id = $.trim($('#tableno').text());
+                        if(seat_mcht_id==''){
+                            weui.topTips('Please choose table');
+                            order_flag = true;
+                            return false;
+                        }
+                    }
                     var items = arr;
-                    var order_note = $.trim($('#order_note').val())
-                    var data = {type:3,package_id:package_id,items:items,order_note:order_note};
+                    var order_note = $.trim($('#order_note').val());
+                    var mcht_id = $.trim($('input[name="mcht_id"]').val());
+                    var data = {mcht_id:mcht_id,type:order_type,items:items,order_note:order_note,order_type:order_type,seat_mcht_id:seat_mcht_id};
+                    // order_flag = true;
+                    // console.log(data);return false;
                     loadingOn(this);
                     var tt = this;
                     $.post("{{route('order.store')}}",data,function(res){
@@ -133,7 +189,7 @@
                                     onClick: function(){  }
                                 }, {
                                     label: 'GO !',
-                                    type: 'primary',
+                                    type: 'base',
                                     onClick: function(){ location.href = "{{route('login')}}" }
                                 }]
                             });
@@ -149,6 +205,54 @@
                     },'json')
                 }
             })
+        });
+        //是否外带
+        $('#takeout').on('change',function(){
+            if($(this).prop('checked')){
+                $('#choose-table').removeClass('show').addClass('hide');
+            }else{
+                $('#choose-table').removeClass('hide').addClass('show');
+            }
+        })
+        //选择桌号
+        $('#choosetable').on('click',function(){
+            weui.picker([
+                 {
+                     label: 'Choose Table No',
+                     value: 0
+                 },{
+                     label: 'Table 1',
+                     value: 1
+                 },{
+                     label: 'Table 2',
+                     value: 2
+                     },
+                 {
+                     label: 'Table 3',
+                     value: 3
+                     },
+                 {
+                     label: 'Table 4',
+                     value: 4,
+                 }
+                 ], {
+                        className: 'weui-cells',
+                        container: 'body',
+                        defaultValue: [0],
+                        onChange: function (result) {
+                            // console.log(result)
+                            },
+                        onConfirm: function (result) {
+                            // console.log(result)
+                            var no = result[0].value;
+                            if(no==0){
+                                $('#tableno').text('');
+                            }else{
+                                $('#tableno').text(no);
+                            }
+                        },
+                    id: 'singleLinePicker'
+                });
         })
         //num 加减
         function item_num(type,tt){
@@ -175,9 +279,11 @@
             })
             if(subtotal == 0){
                 $('.subtotal .weui-cell__ft').html('');
-                $('.subtotal .weui-cell__bd').html('Scan for your package !');
+                $('.subtotal .weui-cell__bd').html('Your shopping cart is empty !');
                 $('.package_order').addClass('hide');
                 $('.note_order').addClass('hide');
+                $('#choose-table').addClass('hide');
+                $('#take-out').addClass('hide');
             }else{
                 $('.subtotal .weui-cell__ft').html('&dollar;'+subtotal);
             }
