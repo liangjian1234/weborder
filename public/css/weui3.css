@@ -93,12 +93,13 @@
 /*
  *Order Details
  */
-.order-details-container{box-sizing: border-box;height: 100%;padding-bottom: 50px;overflow: auto;-webkit-overflow-scrolling: touch;}
+.order-details-container{box-sizing: border-box;height: 100%;padding-bottom: 100px;overflow: auto;-webkit-overflow-scrolling: touch;}
 .order-details{border-radius: 15px;border:1px dashed #ccc;box-shadow: 0 0 15px #ccc;}
 .order-details .weui-cell__ft span{display:inline-block;width:75px;}
 .order-details .order-note{word-break:break-word;text-indent:2em}
 .order-details .item_qrcode svg{display:block;margin:0px auto;}
 .order-details .weui-cell::before{border-top:none}
+.want-tip{width:95%;position: fixed;bottom: 5px;left:2.5%;z-index:999}
 .order-details .item_last::after{
     content: " ";
     position: absolute;
@@ -134,6 +135,11 @@
  * user
  */
 .user-info .weui-cell_access .weui-cell__ft::after{border-color:#fff}
+/*
+ *shopping cart
+ */
+.dine-take{margin-top:1.17647059em}
+.dine-take .weui-flex__item:nth-child(2){margin-left:10%;}
 /*左滑动删除css*/
 .slidelefts {height: 100%;padding:0px;border-bottom: 1px solid  #eee;}
 .slidelefts>.weui-cell__bd {height: auto;overflow: hidden;position: relative;z-index: 10;background-color: #fff;padding: 10px 15px;}

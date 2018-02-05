@@ -61,21 +61,21 @@
                     <div class="weui-cell__ft text-right">&dollar;0.00</div>
                 </div>
             </div>
-            <div class="weui-cells weui-cells_form list-item" id="take-out">
-                <div class="weui-cell weui-cell_switch">
-                    <div class="weui-cell__bd">Take Out ?</div>
-                    <div class="weui-cell__ft">
-                        <label for="takeout" class="weui-switch-cp">
-                            <input id="takeout" class="weui-switch-cp__input" type="checkbox">
-                            <div class="weui-switch-cp__box"></div>
-                        </label>
+            <div class="dine-take">
+                <div class="weui-flex">
+                    <div class="weui-flex__item">
+                        <a id="dine-in"  class="weui-btn weui-btn_base">Dine In</a>
                     </div>
+                    <div class="weui-flex__item">
+                        <a  id="take-out" class="weui-btn weui-btn_plain-base">Take Out</a>
+                    </div>
+                    <input type="hidden" id="order-type" value="1">
                 </div>
             </div>
             <div class="weui-cells list-item" id="choose-table">
                 <a class="weui-cell weui-cell_access" id="choosetable">
                     <div class="weui-cell__bd">
-                        Choose Table
+                        My Table
                     </div>
                     <div class="weui-cell__ft" >
                         # <span id="tableno"></span>
@@ -138,6 +138,23 @@
                 $('.order_note').removeClass('hide').addClass('show');
                 $('#order_note').focus();
             })
+            //dine or take
+            $('#dine-in').on('click',function(){
+                if(!$(this).hasClass('weui-btn_base')){
+                    $(this).removeClass('weui-btn_plain-base').addClass('weui-btn_base');
+                    $('#take-out').removeClass('weui-btn_base').addClass('weui-btn_plain-base');
+                    $('#order-type').val(1);
+                    $('#choose-table').removeClass('hide').addClass('show');
+                }
+            })
+            $('#take-out').on('click',function(){
+                if(!$(this).hasClass('weui-btn_base')){
+                    $(this).removeClass('weui-btn_plain-base').addClass('weui-btn_base');
+                    $('#dine-in').removeClass('weui-btn_base').addClass('weui-btn_plain-base');
+                    $('#order-type').val(2);
+                    $('#choose-table').removeClass('show').addClass('hide');
+                }
+            })
             //下订单
             var order_flag = true;
             $('.order-now').on('click',function(){
@@ -159,12 +176,10 @@
                     weui.topTips('You have no item!');
                     order_flag = true;
                 }else{
-                    var takeout = $('#takeout').prop('checked');
-                    if(takeout){
-                        var order_type = 2;
+                    var order_type = parseInt($.trim($('#order-type').val()));
+                    if(order_type===2){
                         var seat_mcht_id = '';
-                    }else{
-                        var order_type = 1;
+                    }else if(order_type===1){
                         var seat_mcht_id = $.trim($('#tableno').text());
                         if(seat_mcht_id==''){
                             weui.topTips('Please choose table');
@@ -206,33 +221,25 @@
                 }
             })
         });
-        //是否外带
-        $('#takeout').on('change',function(){
-            if($(this).prop('checked')){
-                $('#choose-table').removeClass('show').addClass('hide');
-            }else{
-                $('#choose-table').removeClass('hide').addClass('show');
-            }
-        })
         //选择桌号
         $('#choosetable').on('click',function(){
             weui.picker([
                  {
-                     label: 'Choose Table No',
+                     label: 'Choose Table',
                      value: 0
                  },{
-                     label: 'Table 1',
+                     label: '1',
                      value: 1
                  },{
-                     label: 'Table 2',
+                     label: '2',
                      value: 2
                      },
                  {
-                     label: 'Table 3',
+                     label: '3',
                      value: 3
                      },
                  {
-                     label: 'Table 4',
+                     label: '4',
                      value: 4,
                  }
                  ], {
