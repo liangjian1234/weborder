@@ -1,6 +1,6 @@
 @extends('layout.main')
 
-@section('main_title','Home')
+@section('main_title','Merchant')
 
 @section('main_head')
     <style rel="stylesheet" type="text/css" href="{{asset('css/mescroll.min.css')}}"></style>
@@ -13,53 +13,11 @@
                 <i class="fa fa-angle-left"></i>
             </div>
             <div class="weui-cell__bd text-center">
-                <p>{{$mchtid}}</p>
+                <p>{{$mchtname}}</p>
             </div>
         </div>
     </div>
     <div  id="list-items" class="list-items">
-        {{--<div class="weui-flex">--}}
-        {{--<div class="weui-flex__item">--}}
-        {{--<div class="list-item">--}}
-        {{--<div class="item-favourite text-right text-base_mid">--}}
-        {{--<i class="fa fa-heart-o"></i>--}}
-        {{--</div>--}}
-        {{--<div class="item-img">--}}
-        {{--<img  class="center-block" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII=" alt="" style="width:100px">--}}
-        {{--</div>--}}
-        {{--<div class="item-name">--}}
-        {{--Chinck past--}}
-        {{--</div>--}}
-        {{--<div class="item-desc">--}}
-        {{--how lacad doddi ldlhf a dsad--}}
-        {{--</div>--}}
-        {{--<div class="item-cart">--}}
-        {{--<div>&dollar;199</div>--}}
-        {{--<div class="text-right text-base_mid"><i class="fa fa-shopping-cart"></i></div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<div class="weui-flex__item">--}}
-        {{--<div class="list-item">--}}
-        {{--<div class="item-favourite text-right text-base_mid">--}}
-        {{--<i class="fa fa-heart-o"></i>--}}
-        {{--</div>--}}
-        {{--<div class="item-img">--}}
-        {{--<img  class="center-block" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII=" alt="" style="width:100px">--}}
-        {{--</div>--}}
-        {{--<div class="item-name">--}}
-        {{--Chinck past--}}
-        {{--</div>--}}
-        {{--<div class="item-desc">--}}
-        {{--how lacad doddi ldlhf a dsad--}}
-        {{--</div>--}}
-        {{--<div class="item-cart">--}}
-        {{--<div>&dollar;199</div>--}}
-        {{--<div class="text-right text-base_mid"><i class="fa fa-shopping-cart"></i></div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
     </div>
     {{--购物车--}}
     <div id="shopping-cart" class="shopping-cart hide" onclick="location.href='{{route('user.cart')}}'">

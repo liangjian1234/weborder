@@ -33,7 +33,7 @@ class MchtController extends Controller
         return response()->json($res);
     }
 
-    public function merchant(Request $request,$mchtid=''){
+    public function merchant(Request $request,$mchtid='',$mchtname=''){
         if($mchtid){
             $token = $request->cookie('bearerToken');
             if($token){
@@ -45,7 +45,7 @@ class MchtController extends Controller
                 ];
                 $response = $this->getApiServer($token,$data, $this->API_URL_ITEM, 'get');
                 if ($response->code === 10000) {
-                    return response()->view('merchant.merchant', compact('mchtid'));
+                    return response()->view('merchant.merchant', compact('mchtid','mchtname'));
                 }
             }else {
                 $data = [
@@ -57,7 +57,7 @@ class MchtController extends Controller
                 ];
                 $response = $this->getApiServerNone($data, $this->API_URL_MCHT, 'get');
                 if ($response->code === 10000) {
-                    return response()->view('merchant.merchant', compact('mchtid'));
+                    return response()->view('merchant.merchant', compact('mchtid','mchtname'));
                 }
             }
         }

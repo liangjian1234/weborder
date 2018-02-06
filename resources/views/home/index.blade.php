@@ -7,45 +7,29 @@
 @endsection
 
 @section('main_body')
-    {{--<div class="weui-cells weui-cells_top0 bg-base_light text-white">--}}
-        {{--<div class="weui-cell">--}}
-            {{--<div class="weui-cell__bd text-center">--}}
-                {{--<p>home</p>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
+    <div class="weui-cells weui-cells_top0 merchant-list-top">
+        <div class="weui-flex">
+            <div class="weui-flex__item text-left">
+                <div class="item-food-type" id="food-type">
+                    <span>Food type</span> <i class="fa fa-caret-down"></i>
+                </div>
+            </div>
+            <div class="weui-flex__item text-right">
+                <form action="" method="post">
+                    {{csrf_field()}}
+                <div class="item-search" id="search">
+                    <input class="weui-input" type="text" placeholder="Find by name">
+                    <i class="fa fa-search-plus text-black"></i>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-    <div class="merchant-list" id="merchant-list">
-
+    <div class="merchant-list weui-cells weui-cells_top0" id="merchant-list">
     </div>
     {{--回到顶部--}}
     <div id="back-to-top" class="back-to-top"></div>
-
-
-    {{--<div class="weui-cells">--}}
-        {{--<div class="weui-cell">--}}
-            {{--<div class="weui-cell__bd">--}}
-                {{--<div class="weui-flex">--}}
-                    {{--<div class="weui-flex__item f_15">--}}
-                        {{--name--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="weui-flex">--}}
-                    {{--<div class="weui-flex__item">--}}
-                        {{--<i class="fa fa-dot-circle-o text-base_light f_08"></i> address1--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="weui-flex">--}}
-                    {{--<div class="weui-flex__item">--}}
-                        {{--<i class="fa fa-dot-circle-o text-base_light f_08"></i> address2--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-            {{--<div class="weui-cell__ft">--}}
-                    {{--city--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
 @endsection
 
 @section('main_js')
@@ -101,52 +85,47 @@
             }
             function setListData(curPageData, isAppend) {
                 var listDom=document.getElementById("merchant-list");
+                var strs = '';
                 for (var i = 0; i < curPageData.length; i++) {
                     var newObj1=curPageData[i];
-                    var url = "{{url('merchant')}}"+"/"+newObj1.mcht_id;
-                    var start = '    <div class="weui-cells">\n' +
-                        '        <a class="weui-cell weui-cell_access" href="'+url+'">\n' +
-                        '            <div class="weui-cell__bd">\n' +
-                        '                <div class="weui-flex">\n' +
-                        '                    <div class="weui-flex__item f_15">\n' +
+                    var address = '';
+                    if(newObj1.address1!=null && newObj1.address1!=''){
+                        address = newObj1.address1;
+                    }else if(newObj1.address2!=null && newObj1.address2!=''){
+                        address = newObj1.address2;
+                    }
+                    var str = "<div class='weui-cell' onclick='href_detail(this)'>\n"+
+                        '                <div class="weui-cell__hd"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII=" alt="" style="width:65px;margin-right:5px;display:block"></div>\n' +
+                        '                <div class="weui-cell__bd">\n' +
+                        '                    <div class="weui-flex">\n' +
+                        '                        <div class="weui-flex__item"><h4>\n' +
                         newObj1.mcht_name+
+                        '                        </h4></div>\n' +
                         '                    </div>\n' +
-                        '                </div>\n' ;
-                    if(newObj1.address1===null || newObj1.address1===''){
-                        var address1 = '';
-                    }else{
-                        var address1 = '<div class="weui-flex">\n' +
-                        '                    <div class="weui-flex__item">\n' +
-                        '                        <i class="fa fa-dot-circle-o text-base_light f_08"></i>&nbsp;<span class="text-mute">\n' +
-                        newObj1.address1+
-                        '                    </span></div>\n' +
-                        '                </div>\n';
-                    }
-                    if(newObj1.address2===null || newObj1.address2===''){
-                        var address2 = '';
-                    }else {
-                        var address2 = '<div class="weui-flex">\n' +
-                            '                    <div class="weui-flex__item">\n' +
-                            '                        <i class="fa fa-dot-circle-o text-base_light f_08"></i>&nbsp;<span class="text-mute">\n' +
-                            newObj1.address2 +
-                            '                    </span></div>\n' +
-                            '                </div>\n';
-                    }
-                    var end = '</div>\n' +
-                        '            <div class="weui-cell__ft">\n' +
-                        newObj1.city+
-                        '            </div>\n' +
-                        '        </a>\n' +
-                        '    </div>';
-                    var str = start+address1+address2+end;
-                    var liDom=document.createElement("div");
-                    liDom.innerHTML=str;
-                    if (isAppend) {
-                        listDom.appendChild(liDom);//加在列表的后面,上拉加载
-                    } else{
-                        listDom.insertBefore(liDom, listDom.firstChild);//加在列表的前面,下拉刷新
-                    }
+                        '                    <div class="weui-flex">\n' +
+                        '                        <div class="weui-flex__item f_08">\n' +
+                        address+' , '+newObj1.city+
+                        '                        </div>\n' +
+                        '                    </div>\n' +
+                        '<input type="hidden" name="mcht_id" value="'+newObj1.mcht_id+'">'+
+                        '<input type="hidden" name="mcht_name" value="'+newObj1.mcht_name+'">'+
+                        '                </div>\n' +
+                        '                <div class="weui-cell__ft">\n' +
+                        '                    <div class="weui-flex">\n' +
+                        '                        <div class="weui-flex__item">\n' +
+                        newObj1.ethnic_type+
+                        '                        </div>\n' +
+                        '                    </div>\n' +
+                        '                    <div class="weui-flex">\n' +
+                        '                        <div class="weui-flex__item">\n' +
+                        '                             &nbsp;\n' +
+                        '                        </div>\n' +
+                        '                    </div>\n' +
+                        '                </div>\n' +
+                        '            </div>\n';
+                   strs += str;
                 }
+                listDom.innerHTML = strs;
             }
 
             var downIndex=0;
@@ -166,5 +145,43 @@
                 }
             }
         });
+        function href_detail(tt){
+            var mcht_id = $(tt).find("input[name='mcht_id']").val();
+            var mcht_name = $(tt).find("input[name='mcht_name']").val();
+            var url = "{{url('merchant')}}"+"/"+mcht_id+"/"+mcht_name;
+            location.href = url;
+        }
+    </script>
+    <script type="text/javascript">
+        //食材地区
+        var ethnic_type = new Array();
+        @foreach($ethnic_types as $key=>$type)
+        ethnic_type.push({
+            label:'{{$type}}',
+            value:'{{$key}}',
+        })
+        @endforeach
+        $().ready(function(){
+            $('#food-type').on('click',function() {
+                weui.picker(
+                    ethnic_type,{
+                    className: 'weui-cells',
+                    container: 'body',
+                    defaultValue: [0],
+                    onChange: function (result) {
+                        // console.log(result)
+                    },
+                    onConfirm: function (result) {
+                        console.log(result)
+                        var s_value = result[0].value;
+                        var s_label = result[0].label;
+                        if(s_value==0){
+                            $('#food-type span').text('Order Date');
+                        }else{
+                            $('#food-type span').text(s_label);
+                        }
+                    },id:'picker-foodtype'
+                })
+            })        })
     </script>
 @endsection

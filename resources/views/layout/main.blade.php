@@ -17,11 +17,11 @@
     </div>
     <div class="weui-tabbar bg-white bottom-main">
         <a href="{{ route('home') }}" class="weui-tabbar__item  weui-tabbar_home">
-            <i class="fa fa-buysellads weui-tabbar__icon"></i>
-            <p class="weui-tabbar__label">Home</p>
+            <i class="fa fa-list-ul weui-tabbar__icon"></i>
+            <p class="weui-tabbar__label">Restaurants</p>
         </a>
         <a href="{{ route('order') }}" class="weui-tabbar__item weui-tabbar_order">
-            <i class="fa fa-list-ul weui-tabbar__icon"></i>
+            <i class="fa fa-list-alt weui-tabbar__icon"></i>
             <p class="weui-tabbar__label">Orders</p>
         </a>
         <a href="{{ route('user') }}" class="weui-tabbar__item weui-tabbar_user">

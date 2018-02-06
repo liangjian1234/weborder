@@ -22,7 +22,9 @@ class OrderController extends Controller
         $response = $this->getApiServer($token,[],$this->API_URL_ORDER,'get');
         if($response->code===10000){
             $orders = $response->data;
-            return view('order.index',compact('orders'));
+            $order_status = config('advancina.order_status');
+//            dd($orders);
+            return view('order.index',compact('orders','order_status'));
         }else if($response->code===401){
             return redirect()->route('login');
         }
@@ -79,7 +81,7 @@ class OrderController extends Controller
             }else if($response->code===401){
                 return redirect()->route('login');
             }
-//           dd($response);
+           // dd($response);
             return view('order.order',compact('order'));
         }
         return view('home.notfound',['msg'=>'no order']);

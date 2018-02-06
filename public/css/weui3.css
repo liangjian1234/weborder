@@ -25,6 +25,13 @@
 .text-mute{color:#c7c7c7;}
 .text-muted{color:#999;}
 .text-white{color:#fff;}
+/*order status*/
+.text-new{color:#3F51BB}
+.text-unpaid{color:#E51C23}
+.text-processing{color:#3CA63A}
+.text-success{color:#085C06}
+.text-cancelled{color:#A7A8A7}
+.text-delete{color:#999}
 /*基础背景色*/
 .bg-base_light{background-color:#FF822E;}
 .bg-base_mid{background-color:#F56617;}
@@ -59,6 +66,15 @@
 /*main.blade.php*/
 .bottom-main{position: fixed;bottom:0px}
 /*
+ *Home
+ */
+.merchant-list-top .item-food-type{margin:5px;padding:5px 10px;border:1px solid #999;display:inline-block;border-radius:7px;color:#999}
+.merchant-list-top .item-search{width:70%;margin:5px;padding:5px 10px;border:1px solid #999;display:inline-block;color:#999}
+.merchant-list-top .item-search i{position:absolute;right:15px;top:15px}
+.merchant-list::before{content:none}
+.merchant-list-top::after{content:none}
+.merchant-list .weui-flex{margin:8px auto}
+/*
  * Mercahnt mercahnt
  */
 .shopping-cart{position: fixed;width: 40px;height:40px;border:1px solid #586c94;border-radius:40px;bottom:125px;right:2px;}
@@ -88,8 +104,13 @@
 /*
  *Order Lists
  */
-.order-lists .weui-cell::before{content:none;}
-.order-lists .list-btn{display:inline-block;border:1px solid #FF822E;padding:2px 8px;color:#FF822E;margin-left:10px}
+.order-list-top{padding-left:15px;padding-right:3px}
+.order-list-top::after{content:none;}
+.order-lists::before{content:none;}
+.order-lists p{margin:5px auto;}
+.order-list-top .item-top-status{margin:5px;padding:5px 10px;border:1px solid #999;display:inline-block;border-radius:7px;color:#999}
+/*.order-list-top .item-top-date{margin:5px;padding:5px 10px;border:1px solid #999;display:inline-block;border-radius:7px;color:#999}*/
+.order-list-top .item-top-date{margin:5px;padding:5px 10px;display:inline-block;border-radius:7px;color:#999}
 /*
  *Order Details
  */

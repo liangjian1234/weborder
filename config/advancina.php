@@ -27,4 +27,28 @@ return [
 
     //minutes
     'tokenLifetime'    =>23.5*60,
+
+    //订单状态
+    'order_status'      =>  [
+            'N'=>'New',
+            'U'=>'Unpaid',
+            'P'=>'Processing',
+            'S'=>'Success',
+            'C'=>'Cancelled',
+            'D'=>'Delete',
+    ],
+    //食材地区
+    'ethnic_type'       =>      [
+        'C'     =>  'Chinese',
+        'MX'     =>  'Mexican',
+        'I'     =>  'Italian',
+        'J'     =>  'Japanese',
+        'A'     =>  'American',
+        'G'     =>  'Greek',
+        'F'     =>  'French',
+        'T'     =>  'Thai',
+        'S'     =>  'Spanish',
+        'MD'     =>  'Mediterranean',
+        'K'     =>  'Korean'
+    ],
 ];

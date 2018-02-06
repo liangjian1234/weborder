@@ -1,15 +1,15 @@
 @extends('layout.base')
 
-@section('base_title','Order Detail')
+@section('base_title','Receipt')
 
 @section('base_body')
     <div class="weui-cells weui-cells_top0 bg-base_light text-white">
         <div class="weui-cell">
             <div class="weui-cell__hd" onclick="location.href='{{route('order')}}'">
-                <i class="fa fa-angle-left"></i> Back
+                <i class="fa fa-angle-left"></i>
             </div>
             <div class="weui-cell__bd text-center">
-                Order Details
+                Receipt
             </div>
         </div>
     </div>

@@ -30,10 +30,16 @@ class HomeController extends Controller
             $response = $this->getApiServerNone($data,$this->API_URL_MCHT,'get');
             if($response->code===10000){
                 $mchts = $response;
+                foreach($mchts->data as $mcht){
+                    $mcht->ethnic_type = config('advancina.ethnic_type.'. $mcht->ethnic_type,'');
+                    $mcht->address1 = str_limit($mcht->address1,20,'');
+                    $mcht->address2 = str_limit($mcht->address2,20,'');
+                }
             }
             return response()->json($mchts);
         }
-        return view('home.index');
+        $ethnic_types = config('advancina.ethnic_type');
+        return view('home.index',compact('ethnic_types'));
     }
     //登录
     public function login(Request $request)
