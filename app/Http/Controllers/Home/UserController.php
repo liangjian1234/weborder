@@ -73,9 +73,23 @@ class UserController extends Controller
             $type = $request->post('type');
             $item_id = $request->post('item_id');
             if($type=='post'){
-                return $this->requestApiServer($request,$this->API_URL_USER_FAVORITE,'post');
+                $response = $this->requestApiServer($request,$this->API_URL_USER_FAVORITE,'post');
+                $res = json_decode($response);
+                if($res['code']===100){
+                    if($request->session()->get('item_details')){
+                        $request->session()->push('item_details.item_list.added_to_favorite', 'true');
+                    }
+                }
+                return $response;
             }else if($type=='delete'){
-                return $this->requestApiServer($request,$this->API_URL_USER_FAVORITE.'/'.$item_id,'delete');
+                $response = $this->requestApiServer($request,$this->API_URL_USER_FAVORITE.'/'.$item_id,'delete');
+                $res = json_decode($response);
+                if($res['code']===100){
+                    if($request->session()->get('item_details')){
+                        $request->session()->push('item_details.item_list.added_to_favorite', 'false');
+                    }
+                }
+                return $response;
             }
         }
         if($request->isMethod('get')){

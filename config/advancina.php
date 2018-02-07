@@ -14,9 +14,11 @@ return [
         //未登录商品
         'merchant'          =>  'merchant',
         'combo'              =>  'combo',
+        'detail'            =>  'detail',
         //登录商品
         'item'              =>  'item',
         'package'           =>  'package',
+        'item_detail'       =>  'item_detail',
         //商品收藏
         'item_favorite'    =>   'item_favorite',
         //购物车

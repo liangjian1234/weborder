@@ -7,6 +7,8 @@ Route::group(['namespace'=>'Home'],function(){
 
     Route::post('merchant','MchtController@index')->name('merchant');
     Route::get('merchant/{mchtid}/{mchtname}','MchtController@merchant')->name('merchant.merchant');
+    Route::post('details','MchtController@details')->name('merchant.details');
+    Route::get('details/{itemid}','MchtController@details')->name('merchant.details');
     Route::get('combo/{package_id}','MchtController@combo')->name('merchant.combo');
 
     Route::match(['get','post'],'/','HomeController@index')->name('home');
