@@ -20,6 +20,8 @@ Route::group(['namespace'=>'Home'],function(){
             Route::get('settings','UserController@settings')->name('user.settings');
             Route::match(['get','post'],'item_favorite','UserController@item_favorite')->name('user.favorite');
             Route::match(['get','post'],'item_cart','UserController@item_cart')->name('user.cart');
+            Route::get('wallet','UserController@wallet')->name('user.wallet');
+            Route::match(['get','post'],'wallet/add','UserController@wallet_add')->name('user.wallet.add');
             Route::match(['get','post'],'edit','UserController@edit')->name('user.edit');
             Route::post('verify','UserController@verify')->name('user.verify');
         });

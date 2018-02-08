@@ -128,4 +128,11 @@ class UserController extends Controller
             }
         }
     }
+    //wallet
+    public function wallet(){
+        return view('user.wallet');
+    }
+    public function wallet_add(){
+        return view('user.wallet_add');
+    }
 }

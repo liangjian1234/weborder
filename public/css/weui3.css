@@ -176,6 +176,22 @@
  */
 .user-info .weui-cell_access .weui-cell__ft::after{border-color:#fff}
 /*
+ *user wallet
+ */
+.user-wallet .weui-cells::before,.user-wallet .weui-cells::after{content:none}
+.user-wallet .user-card{height:200px;line-height:200px;width:100%;border-radius:10px;}
+.user-wallet .card-add{height:200px;line-height:200px;width:100%;border-radius:10px;background-color:#F3F3F3}
+.user-wallet .card-add i{font-size:2em;position:absolute;top:90px;left:80px}
+/*
+ *user wallet_add
+ */
+.user-wallet-add{box-sizing: border-box;height: 100%;overflow: auto;-webkit-overflow-scrolling: touch;}
+.user-wallet-add .weui-cells::before,.user-wallet-add .weui-cells::after{content:none}
+.user-wallet-add-inputs .weui-cells__title{margin-top:1.77em}
+.user-wallet-add-inputs .weui-cells{box-shadow:0px 4px 5px #ccc}
+.user-wallet-add-inputs .add-card{margin-top:3em}
+
+/*
  *shopping cart
  */
 .dine-take{margin-top:1.17647059em}
