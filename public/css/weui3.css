@@ -74,6 +74,7 @@
 .merchant-list::before{content:none}
 .merchant-list-top::after{content:none}
 .merchant-list .weui-flex{margin:8px auto}
+.merchant-list .weui-loadmore_line .weui-loadmore__tips {background-color:#fff;}
 /*
  * Mercahnt mercahnt
  */
@@ -176,12 +177,16 @@
  */
 .user-info .weui-cell_access .weui-cell__ft::after{border-color:#fff}
 /*
- *user wallet
+ *wallet
  */
+.user-wallet{box-sizing: border-box;height: 100%;overflow: auto;-webkit-overflow-scrolling: touch;padding-bottom: 50px}
 .user-wallet .weui-cells::before,.user-wallet .weui-cells::after{content:none}
-.user-wallet .user-card{height:200px;line-height:200px;width:100%;border-radius:10px;}
-.user-wallet .card-add{height:200px;line-height:200px;width:100%;border-radius:10px;background-color:#F3F3F3}
-.user-wallet .card-add i{font-size:2em;position:absolute;top:90px;left:80px}
+.user-wallet .user-card{width:100%;border-radius:10px;}
+.user-wallet .card-list{padding:0px 15px}
+.user-wallet .user-card img{width:100%}
+.user-wallet .user-card .card_num{position:absolute;top:45%;left:70%;font-size:0.8em;color:#fff}
+.user-wallet .card-add{margin:0px 6px;height:140px;line-height:140px;width:100%;border-radius:10px;background-color:#F3F3F3}
+.user-wallet .card-add i{font-size:2em;position:absolute;top:50px;left:80px}
 /*
  *user wallet_add
  */

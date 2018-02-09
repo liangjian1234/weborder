@@ -12,18 +12,28 @@ class UserController extends Controller
     public $API_URL_USER_VERIFY;
     public $API_URL_USER_FAVORITE;
     public $API_URL_USER_CART;
+    public $API_URL_WALLET;
     public function __construct()
     {
         $this->API_URL_USER_INFO = config('advancina.api.url').config('advancina.api.userInfo');
         $this->API_URL_USER_VERIFY = config('advancina.api.url').config('advancina.api.codeVerify');
         $this->API_URL_USER_FAVORITE = config('advancina.api.url').config('advancina.api.item_favorite');
         $this->API_URL_USER_CART = config('advancina.api.url').config('advancina.api.item_cart');
+        $this->API_URL_WALLET = config('advancina.api.url').config('advancina.api.wallet');
     }
     //Profile页面
     public function index(Request $request)
     {
         $user = $this->getUserInfo($request);
-        return view('user.index',compact('user'));
+        $token = $request->cookie('bearerToken');
+        $wallet = 0;
+        if($token){
+            $response = $this->getApiServer($token,[],$this->API_URL_WALLET,'get');
+            if($response->code===10000){
+                $wallet = count($response->data);
+            }
+        }
+        return view('user.index',compact('user','wallet'));
     }
     //settings
     public function settings(Request $request){
@@ -127,12 +137,5 @@ class UserController extends Controller
                 return view('user.cart',compact('carts'));
             }
         }
-    }
-    //wallet
-    public function wallet(){
-        return view('user.wallet');
-    }
-    public function wallet_add(){
-        return view('user.wallet_add');
     }
 }

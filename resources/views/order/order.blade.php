@@ -151,7 +151,7 @@
                     Paied By:
                 </div>
                 <div class="weui-cell__ft">
-                    {{$order->pay_method}}
+                    {{config('advancina.pay_method.'.$order->pay_method)}}
                 </div>
             </div>
             {{--<div class="weui-cell">--}}

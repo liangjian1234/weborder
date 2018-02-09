@@ -26,9 +26,12 @@ Route::group(['namespace'=>'Home'],function(){
             Route::post('verify','UserController@verify')->name('user.verify');
         });
     });
+
+    Route::resource('wallet','WalletController')->middleware('checktoken');
+
     Route::group(['prefix'=>'order'],function(){
         Route::group(['middleware'=>'checktoken'],function() {
-            Route::get('/', 'OrderController@index')->name('order');
+            Route::match(['get','post'],'/', 'OrderController@index')->name('order');
             Route::post('store', 'OrderController@store')->name('order.store');
             Route::get('{order_id}', 'OrderController@order')->name('order.order');
         });

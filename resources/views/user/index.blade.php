@@ -6,7 +6,7 @@
 
 @section('main_body')
     @includeWhen(empty($user),'user.unlogin')
-    @includeWhen(!empty($user),'user.info',['user'=>$user])
+    @includeWhen(!empty($user),'user.info',['user'=>$user,'wallet'=>$wallet])
 @endsection
 
 @section('main_js')

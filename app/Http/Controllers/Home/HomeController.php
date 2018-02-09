@@ -37,9 +37,12 @@ class HomeController extends Controller
                 }
             }
             return response()->json($mchts);
+        }else{
+            $mcht_name = $request->get('mcht_name');
+            $food_type = $request->get('food_type');
+            $ethnic_types = array_sort(config('advancina.ethnic_type'));
+            return view('home.index',compact('ethnic_types','mcht_name','food_type'));
         }
-        $ethnic_types = config('advancina.ethnic_type');
-        return view('home.index',compact('ethnic_types'));
     }
     //登录
     public function login(Request $request)

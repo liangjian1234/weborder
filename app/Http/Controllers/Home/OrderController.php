@@ -19,12 +19,17 @@ class OrderController extends Controller
     //订单列表
     public function index(Request $request){
         $token = $request->cookie('bearerToken');
-        $response = $this->getApiServer($token,[],$this->API_URL_ORDER,'get');
+        $order  =   $request->get('order','');
+        $status =   $request->get('status','');
+        $data = [
+            'order'=>$order,
+            'status'=>$status
+        ];
+        $response = $this->getApiServer($token,$data,$this->API_URL_ORDER,'get');
         if($response->code===10000){
             $orders = $response->data;
             $order_status = config('advancina.order_status');
-//            dd($orders);
-            return view('order.index',compact('orders','order_status'));
+            return view('order.index',compact('orders','order_status','order','status'));
         }else if($response->code===401){
             return redirect()->route('login');
         }
@@ -59,7 +64,7 @@ class OrderController extends Controller
                         'mcht_id' => $request->post('mcht_id'),
                         'order_type' => $request->post('order_type'),
                         'seat_mcht_id' => $request->post('seat_mcht_id'),
-                        'pay_now_flag' => 'N',
+                        'pay_now_flag' => 'Y',
                     ];
                     $response = $this->getApiServer($token, $data, $this->API_URL_ORDER, 'post');
                     return response()->json($response);

@@ -25,6 +25,8 @@ return [
         'item_cart'         =>  'item_cart',
         //订单
         'order'             =>  'order',
+        //wallet
+        'wallet'            =>  'wallet',
     ],
 
     //minutes
@@ -38,6 +40,32 @@ return [
             'S'=>'Success',
             'C'=>'Cancelled',
             'D'=>'Delete',
+    ],
+    //支付状态  N=未支付 S=success 支付成功  F=支付失败  C=支付取消
+    'pay_status'      =>  [
+            'N'=>'Unpaid',
+            'S'=>'Success',
+            'F'=>'Faliure',
+            'C'=>'Cancelled',
+    ],
+    //支付方式  V=Visa, M=Mastercard, A=American Express, P=Paypal, W=Wechat, Z=AliPay
+    'pay_method'      =>  [
+            'V'=>'Visa',
+            'M'=>'Mastercard',
+            'A'=>'American Express',
+            'P'=>'Paypal',
+            'W'=>'Wechat',
+            'Z'=>'AliPay',
+            'D'=>'Discover',
+    ],
+    'pay_method_img'      =>  [
+            'V'=>'visa.png',
+            'M'=>'mastercard.png',
+            'A'=>'americanexpress.png',
+            'P'=>'paypal.png',
+            'W'=>'wechat.png',
+            'Z'=>'aliPay.png',
+            'D'=>'discover.png',
     ],
     //食材地区
     'ethnic_type'       =>      [

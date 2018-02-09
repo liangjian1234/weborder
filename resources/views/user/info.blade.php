@@ -8,9 +8,9 @@
     </a>
 </div>
 <div class="weui-grids bg-white">
-    <a href="{{route('user.wallet')}}" class="weui-grid">
+    <a href="{{route('wallet.index')}}" class="weui-grid">
         <div class="weui-grid__icon text-center text-danger">
-            3
+            {{$wallet}}
         </div>
         <p class="weui-grid__label">Wallet</p>
     </a>
