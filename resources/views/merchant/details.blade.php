@@ -14,30 +14,40 @@
         </div>
     </div>
     <div class="item-details">
-    <div class="page__bd_spacing">
-        <div class="weui-cells weui-cells_top0 item-details-mid">
-            <div class="weui-flex item-img">
-                <div class="weui-flex__item">
-                    <img src="{{$item_list->default_image_prefix.'/'.$item_list->default_image}}" alt="" width="100%">
+        <div class="page__bd_spacing">
+            <div class="weui-cells weui-cells_top0 item-details-mid">
+                <div class="weui-flex item-img">
+                    <div class="weui-flex__item">
+                        <img src="{{$item_list->default_image_prefix.'/'.$item_list->default_image}}" alt="" width="100%">
+                    </div>
+                    @isset($item_prev)
+                    <div class="item_prev" onclick="href_detail({{$item_prev->item_id}})">
+                        <i class="fa fa-angle-double-left"></i>
+                    </div>
+                    @endisset
+                    @isset($item_next)
+                    <div class="item_next" onclick="href_detail({{$item_next->item_id}})">
+                        <i class="fa fa-angle-double-right"></i>
+                    </div>
+                    @endisset
                 </div>
-            </div>
-            <div class="weui-flex item-name">
-                <div class="weui-flex__item">
-                    {{$item_list->item_name}}
+                <div class="weui-flex item-name">
+                    <div class="weui-flex__item">
+                        {{$item_list->item_name}}
+                    </div>
                 </div>
-            </div>
-            <div class="weui-flex item-desc">
-                <div class="weui-flex__item text-mute">
-                    {{$item_list->item_desc}}
+                <div class="weui-flex item-desc">
+                    <div class="weui-flex__item text-mute">
+                        {{$item_list->item_desc}}
+                    </div>
                 </div>
-            </div>
-            <div class="weui-flex item-price">
-                <div class="weui-flex__item">
-                    &dollar;{{$item_list->price}}
+                <div class="weui-flex item-price">
+                    <div class="weui-flex__item">
+                        &dollar;{{$item_list->price}}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <div class="item-details-bot">
         <div class="weui-cells weui-cells_top0">
@@ -195,6 +205,12 @@
                 })
             }
         })
-
+        //到详情页面
+        function href_detail(id){
+            $.post("{{url('details')}}",{item_id:id,merchant_id:mcht_id,merchant_name:mcht_name},function(res){
+                // console.log(res);return;
+                location.href = "{{url('details')}}"+"/"+id;
+            });
+        }
     </script>
 @endsection

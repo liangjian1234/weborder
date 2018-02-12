@@ -64,7 +64,7 @@ class OrderController extends Controller
                         'mcht_id' => $request->post('mcht_id'),
                         'order_type' => $request->post('order_type'),
                         'seat_mcht_id' => $request->post('seat_mcht_id'),
-                        'pay_now_flag' => 'Y',
+                        'pay_now_flag' => 'N',
                     ];
                     $response = $this->getApiServer($token, $data, $this->API_URL_ORDER, 'post');
                     return response()->json($response);
@@ -90,5 +90,12 @@ class OrderController extends Controller
             return view('order.order',compact('order'));
         }
         return view('home.notfound',['msg'=>'no order']);
+    }
+
+    public function update(Request $request,$order_id)
+    {
+        //仅在未添加支付接口时，直接修改order_status为N，pay_status为S
+        $response = $this->requestApiServer($request,$this->API_URL_ORDER.'/'.$order_id,'put');
+        return $response;
     }
 }

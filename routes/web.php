@@ -34,6 +34,7 @@ Route::group(['namespace'=>'Home'],function(){
             Route::match(['get','post'],'/', 'OrderController@index')->name('order');
             Route::post('store', 'OrderController@store')->name('order.store');
             Route::get('{order_id}', 'OrderController@order')->name('order.order');
+            Route::put('{order_id}', 'OrderController@update')->name('order.update');
         });
     });
 });

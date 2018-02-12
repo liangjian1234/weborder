@@ -98,6 +98,8 @@
 .item-details-mid{border:1px solid #ccc;border-radius:10px;box-shadow:0 0 20px #ccc}
 .item-details-mid .item-img{border-bottom:1px solid #ccc}
 .item-details-mid .item-img .weui-flex__item{padding:40px}
+.item-details-mid .item_prev{position:absolute;left:0px;top:126px;color:#F56617;font-size:2em}
+.item-details-mid .item_next{position:absolute;right:0px;top:126px;color:#F56617;font-size:2em}
 .item-details-mid .item-name{font-size:1.3em;text-align:center;margin:5px}
 .item-details-mid .item-desc{font-size:1em;text-align:center;margin:5px}
 .item-details-mid .item-price{font-size:1.5em;text-align:center;margin:5px;font-weight:700}
@@ -183,10 +185,11 @@
 .user-wallet .weui-cells::before,.user-wallet .weui-cells::after{content:none}
 .user-wallet .user-card{width:100%;border-radius:10px;}
 .user-wallet .card-list{padding:0px 15px}
+.user-wallet .card-list i{position:absolute;top:14px;right:8%;font-size:1.5em}
 .user-wallet .user-card img{width:100%}
 .user-wallet .user-card .card_num{position:absolute;top:45%;left:70%;font-size:0.8em;color:#fff}
 .user-wallet .card-add{margin:0px 6px;height:140px;line-height:140px;width:100%;border-radius:10px;background-color:#F3F3F3}
-.user-wallet .card-add i{font-size:2em;position:absolute;top:50px;left:80px}
+.user-wallet .card-add i{font-size:2em;position:relative;top:4px}
 /*
  *user wallet_add
  */

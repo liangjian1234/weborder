@@ -9,7 +9,6 @@
 @section('main_body')
     <div class="weui-cells weui-cells_top0 merchant-list-top">
         <form action="{{route('home')}}" method="get">
-            {{csrf_field()}}
         <div class="weui-flex">
             <div class="weui-flex__item text-left">
                 <div class="item-food-type" id="food-type">

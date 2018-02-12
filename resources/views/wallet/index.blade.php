@@ -17,9 +17,12 @@
         @forelse($cards as $card)
         <div class="weui-cells">
             <div class="weui-cell card-list">
-                <div class="user-card">
+                <div class="user-card" onclick="href_show({{$card->id}})">
                     <img src="{{asset('images/'.config('advancina.pay_method_img.'.$card->pay_method))}}" alt="">
                     <span class="card_num">{{$card->card_num}}</span>
+                    @if($card->default_pay)
+                    <i class="fa fa-flag text-base_mid"></i>
+                    @endif
                 </div>
             </div>
         </div>
@@ -52,5 +55,9 @@
         $().ready(function(){
             $('.weui-tabbar_user').addClass('weui-bar__item_on').siblings().removeClass('weui-bar__item_on');
         })
+
+        function href_show(id){
+            location.href = "{{url('wallet')}}"+'/'+id;
+        }
     </script>
 @endsection

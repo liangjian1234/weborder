@@ -24,8 +24,15 @@ class WalletController extends Controller
         $cards = null;
         if($response->code===10000){
             $cards = $response->data;
+            foreach($cards as $key=>$card){
+                if($card->default_pay){
+                    unset($cards[$key]);
+                    array_unshift($cards,$card);
+                    break;
+                }
+            }
         }
-//        dd($response);
+//        dd($cards);
         return view('wallet.index',compact('cards'));
     }
 
@@ -50,6 +57,7 @@ class WalletController extends Controller
     {
         //
         $pay_idnum = $request->post('num');
+        $default_pay = $request->post('default_pay');
         if(!preg_match("/^\d{13,16}$/",$pay_idnum)){
             return response()->json([
                 'code'=>200,
@@ -57,7 +65,8 @@ class WalletController extends Controller
             ]);
         }
         $data = [
-            'card_num'=>$pay_idnum
+            'card_num'=>$pay_idnum,
+            'default_pay'=>$default_pay,
         ];
         $response = $this->getApiServer($request->cookie('bearerToken'),$data,$this->API_URL_WALLET,'post');
         return response()->json($response);
@@ -69,9 +78,17 @@ class WalletController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request,$id)
     {
         //
+        $response = $this->getApiServer($request->cookie('bearerToken'),[],$this->API_URL_WALLET.'/'.$id,'get');
+        if($response->code===10000){
+            $card = $response->data;
+        }else{
+            $card = null;
+        }
+//        dd(isset($a));
+        return view('wallet.show',compact('card'));
     }
 
     /**
@@ -95,6 +112,8 @@ class WalletController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $response = $this->requestApiServer($request,$this->API_URL_WALLET.'/'.$id,'put');
+        return $response;
     }
 
     /**
@@ -103,8 +122,10 @@ class WalletController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
         //
+        $response = $this->requestApiServer($request,$this->API_URL_WALLET.'/'.$id,'delete');
+        return $response;
     }
 }

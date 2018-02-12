@@ -98,20 +98,28 @@ class MchtController extends Controller
             return redirect()->route('home');
         }
         $item_id = $item_details['item_id'];
-        $token = $request->cookie('bearerToken');
-        if($token){
-            $response = $this->getApiServer($token,['item_id'=>$item_id],$this->API_URL_ITEM_DETAIL,'get');
-        }else{
-            $response = $this->getApiServerNone(['item_id'=>$item_id,'type'=>'unlogin'],$this->API_URL_DETAIL,'get');
-        }
-        if($response->code===10000){
-            $item_list = $response->data[0];
-        }else{
-            $item_list = null;
-        }
         $merchant_id = $item_details['merchant_id'];
         $merchant_name = $item_details['merchant_name'];
-//        dd($response);
-        return view('merchant.details',compact('item_id','item_list','merchant_id','merchant_name'));
+        $token = $request->cookie('bearerToken');
+        if($token){
+            $response = $this->getApiServer($token,['mcht_id'=>$merchant_id,'item_id'=>$item_id],$this->API_URL_ITEM_DETAIL,'get');
+        }else{
+            $response = $this->getApiServerNone(['mcht_id'=>$merchant_id,'item_id'=>$item_id,'type'=>'unlogin'],$this->API_URL_DETAIL,'get');
+        }
+        if($response->code===10000){
+            $item_list = data_get($response->data,0);
+            $item_prev = data_get($response->data,'previous',null);
+            $item_next = data_get($response->data,'next',null);
+        }
+        $data = [
+            'merchant_id'=>$merchant_id,
+            'merchant_name'=>$merchant_name,
+            'item_id'=>$item_id,
+            'item_list'=>$item_list ?? null,
+            'item_prev'=>$item_prev ?? null,
+            'item_next'=>$item_next ?? null,
+        ];
+//        dd($data);
+        return view('merchant.details',$data);
     }
 }

@@ -39,6 +39,18 @@
                     </div>
                 </div>
             </div>
+            <div class="weui-cells__title">SET DEFAULT PAY</div>
+            <div class="weui-cells weui-cells_form">
+                <div class="weui-cell weui-cell_switch">
+                    <div class="weui-cell__bd">SET ?</div>
+                    <div class="weui-cell__ft">
+                        <label for="default_pay" class="weui-switch-cp">
+                            <input id="default_pay" name="default-pay" class="weui-switch-cp__input" type="checkbox" value="1">
+                            <div class="weui-switch-cp__box"></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
 
             <div class="add-card">
                 <a href="javascript:;" class="weui-btn weui-btn_base add-to-card">ADD MY CARD</a>
@@ -70,6 +82,7 @@
                 var date = $("input[name='expire_date']").val();
                 var name = $("input[name='holder_name']").val();
                 var num = $("input[name='card_num']").val();
+                var default_pay = $("input[name='default-pay']").val();
                 if(date==''){
                     weui.topTips('Please pick EXPIRATION DATE');
                     click_flag = true;
@@ -87,7 +100,7 @@
                 }
                 loadingOn(this);
                 var tt = this;
-                $.post("{{route('wallet.store')}}",{num:num,date:date,name:name},function(res){
+                $.post("{{route('wallet.store')}}",{default_pay:default_pay,num:num,date:date,name:name},function(res){
                     if(res.code===10000){
                         location.href = "{{route('wallet.index')}}";
                     }else{

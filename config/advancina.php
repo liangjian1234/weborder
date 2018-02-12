@@ -41,6 +41,12 @@ return [
             'C'=>'Cancelled',
             'D'=>'Delete',
     ],
+    //订单类型 1 Dine In  2 Take Out 3 Fast Food
+    'order_type'      =>  [
+            '1'=>'Dine In',
+            '2'=>'Take Out',
+            '3'=>'Fast Food'
+    ],
     //支付状态  N=未支付 S=success 支付成功  F=支付失败  C=支付取消
     'pay_status'      =>  [
             'N'=>'Unpaid',

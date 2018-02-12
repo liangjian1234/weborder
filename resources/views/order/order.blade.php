@@ -55,19 +55,7 @@
             <div class="weui-cell">
                 <div class="weui-cell__bd text-base_dark">
                     <h3>
-                    @switch($order->order_type)
-                        @case(1)
-                        Dine In
-                        @break
-                        @case(2)
-                        Take Out
-                        @break
-                        @case(3)
-                        Fast Food
-                        @break
-                        @default
-                        unknown
-                    @endswitch
+                    {{config('advancina.order_type.'.$order->order_type)}}
                     </h3>
                 </div>
             </div>
@@ -97,33 +85,14 @@
                     {{date('Y-m-d H:i:s',strtotime($order->order_on->date))}}
                 </div>
             </div>
-            {{--<div class="weui-cell">--}}
-                {{--<div class="weui-cell__bd">--}}
-                    {{--Order Status:--}}
-                {{--</div>--}}
-                {{--<div class="weui-cell__ft">--}}
-                    {{--@switch($order->order_status)--}}
-                        {{--@case('N')--}}
-                            {{--New--}}
-                            {{--@break--}}
-                        {{--@case('U')--}}
-                            {{--Unpaid--}}
-                            {{--@break--}}
-                        {{--@case('P')--}}
-                            {{--Processing--}}
-                            {{--@break--}}
-                        {{--@case('S')--}}
-                            {{--Success--}}
-                            {{--@break--}}
-                        {{--@case('C')--}}
-                            {{--Cancel--}}
-                            {{--@break--}}
-                        {{--@case('D')--}}
-                            {{--Delete--}}
-                            {{--@break--}}
-                    {{--@endswitch--}}
-                {{--</div>--}}
-            {{--</div>--}}
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    Order Status:
+                </div>
+                <div class="weui-cell__ft">
+                    {{config('advancina.order_status.'.$order->order_status)}}
+                </div>
+            </div>
             {{--<div class="weui-cell">--}}
                 {{--<div class="weui-cell__bd">--}}
                     {{--Pay Status:--}}
@@ -145,7 +114,7 @@
                     {{--@endswitch--}}
                 {{--</div>--}}
             {{--</div>--}}
-             {{--@if($order->pay_status=='S'||$order->pay_status=='F')--}}
+             @if(in_array($order->order_status,['N','P','S']))
             <div class="weui-cell note-order">
                 <div class="weui-cell__bd">
                     Paied By:
@@ -154,6 +123,7 @@
                     {{config('advancina.pay_method.'.$order->pay_method)}}
                 </div>
             </div>
+                @endif
             {{--<div class="weui-cell">--}}
                 {{--<div class="weui-cell__bd">--}}
                     {{--Pay Date:--}}
@@ -237,11 +207,51 @@
             {{--</div>--}}
         {{--</div>--}}
     {{--</div>--}}
+    @if($order->order_status=='S')
     <div class="want-tip">
-            <a href="javascript:;" class="weui-btn weui-btn_base"><i class="fa fa-dollar"></i>&nbsp;&nbsp;&nbsp;I Want To Tip !</a>
+            <a href="javascript:;" id="want-tip" class="weui-btn weui-btn_base"><i class="fa fa-dollar"></i>&nbsp;&nbsp;&nbsp;I Want To Tip !</a>
     </div>
+    @endif
+    @if($order->order_status=='U')
+    <div class="want-tip">
+            <a href="javascript:;" id="pay-now" class="weui-btn weui-btn_base"><i class="fa fa-dollar"></i>&nbsp;&nbsp;&nbsp;Pay Now !</a>
+    </div>
+    @endif
 @endsection
 
 @section('base_js')
-
+    @if($order->order_status=='U')
+        <script type="text/javascript">
+            $().ready(function(){
+                var pay_click = true;
+                $('#pay-now').on('click',function(){
+                    if(pay_click){
+                        pay_click = false;
+                    }else{
+                        return false;
+                    }
+                    loadingOn(this);
+                    var tt = this;
+                    $.ajax({
+                        url:"{{route('order.update',['order_id'=>$order->order_id])}}",
+                        type:'PUT',
+                        dataType:'json',
+                        success:function(res){
+                            if(res.code==100){
+                                weui.toast('Success',{
+                                    duration:2000,
+                                    callback:function(){history.go(0)}
+                                })
+                                pay_click = true;
+                            }else{
+                                weui.topTips(res.msg);
+                                loadingOff(tt);
+                                pay_click = true;
+                            }
+                        }
+                    })
+                })
+            })
+        </script>
+    @endif
 @endsection
