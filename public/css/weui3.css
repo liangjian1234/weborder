@@ -97,7 +97,8 @@
 .item-details{background-color:#fff;padding-top:20px;box-sizing: border-box;height: 100%;padding-bottom: 150px;overflow: auto;-webkit-overflow-scrolling: touch;}
 .item-details-mid{border:1px solid #ccc;border-radius:10px;box-shadow:0 0 20px #ccc}
 .item-details-mid .item-img{border-bottom:1px solid #ccc}
-.item-details-mid .item-img .weui-flex__item{padding:40px}
+.item-details-mid .item-img #img_box{padding:40px}
+.item-details-mid .img-dot{position:relative;width:100%;bottom:23px;text-align:center;font-size:0.5em}
 .item-details-mid .item_prev{position:absolute;left:0px;top:126px;color:#F56617;font-size:2em}
 .item-details-mid .item_next{position:absolute;right:0px;top:126px;color:#F56617;font-size:2em}
 .item-details-mid .item-name{font-size:1.3em;text-align:center;margin:5px}

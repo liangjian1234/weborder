@@ -18,8 +18,29 @@
             <div class="weui-cells weui-cells_top0 item-details-mid">
                 <div class="weui-flex item-img">
                     <div class="weui-flex__item">
-                        <img src="{{$item_list->default_image_prefix.'/'.$item_list->default_image}}" alt="" width="100%">
+                        <div class="weui-flex">
+                            <div class="weui-flex__item" id="img_box" >
+                            @if(!empty($item_list->images))
+                                <img class="" src="{{$item_list->default_image_prefix.'/'.$item_list->images[0]}}" alt="" width="100%">
+                            @endif
+                            </div>
+                        </div>
+                        @if(!empty($item_list->images))
+                            <div class="img-dot">
+                                @foreach($item_list->images as $img)
+                                    <i class="fa
+                                    @if($loop->first)
+                                            fa-circle
+                                    @else
+                                            fa-circle-o
+                                    @endif
+                                            text-base_light"></i>
+                                @endforeach
+                            </div>
+                        @endif
+
                     </div>
+
                     @isset($item_prev)
                     <div class="item_prev" onclick="href_detail({{$item_prev->item_id}})">
                         <i class="fa fa-angle-double-left"></i>
@@ -212,5 +233,80 @@
                 location.href = "{{url('details')}}"+"/"+id;
             });
         }
+    </script>
+
+    {{--以下图片相关--}}
+    <script type="text/javascript" src="{{asset('js/previewImage.min.js')}}"></script>
+    <script type="text/javascript">
+        var $$ = {};
+        /**
+         * get multiple elements
+         * @public
+         */
+        $$.all = function(selector, contextElement) {
+            var nodeList,
+                list = [];
+            if (contextElement) {
+                nodeList = contextElement.querySelectorAll(selector);
+            } else {
+                nodeList = document.querySelectorAll(selector);
+            }
+            if (nodeList && nodeList.length > 0) {
+                list = Array.prototype.slice.call(nodeList);
+            }
+            return list;
+        }
+
+        /**
+         * delegate an event to a parent element
+         * @public
+         * @param  array     $el        parent element
+         * @param  string    eventType  name of the event
+         * @param  string    selector   target's selector
+         * @param  function  fn
+         */
+        $$.delegate = function($el, eventType, selector, fn) {
+            if (!$el) { return; }
+            $el.addEventListener(eventType, function(e) {
+                var targets = $$.all(selector, $el);
+                if (!targets) {
+                    return;
+                }
+                // findTarget:
+                for (var i=0; i<targets.length; i++) {
+                    var $node = e.target;
+                    while ($node) {
+                        if ($node == targets[i]) {
+                            fn.call($node, e);
+                            break; //findTarget;
+                        }
+                        $node = $node.parentNode;
+                        if ($node == $el) {
+                            break;
+                        }
+                    }
+                }
+            }, false);
+        };
+
+        var urls = [];
+        @if(!empty($item_list->images))
+        @foreach($item_list->images as $image)
+            urls.push("{{$item_list->default_image_prefix.'/'.$image}}")
+        @endforeach
+        @endif
+        // var imgs = $$.all('img',$$.all('#img_box')[0]);
+        // imgs.forEach(function(v,i){
+        //     urls.push(v.src);
+        // })
+
+        $$.delegate(document.querySelector('#img_box'), 'click','img',function(){
+            var current = this.src;
+            var obj = {
+                urls : urls,
+                current : current
+            };
+            previewImage.start(obj);
+        });
     </script>
 @endsection

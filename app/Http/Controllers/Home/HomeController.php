@@ -41,6 +41,7 @@ class HomeController extends Controller
             $mcht_name = $request->get('mcht_name');
             $food_type = $request->get('food_type');
             $ethnic_types = array_sort(config('advancina.ethnic_type'));
+//            $domain = config('app.file_domain') . "/" . Auth::user()->mcht_id . '/';
             return view('home.index',compact('ethnic_types','mcht_name','food_type'));
         }
     }
