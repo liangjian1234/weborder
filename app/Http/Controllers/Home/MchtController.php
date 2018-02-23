@@ -24,6 +24,7 @@ class MchtController extends Controller
         $this->API_URL_PACKAGE = config('advancina.api.url').config('advancina.api.package');
     }
 
+    //商户商品列表页数据获取
     public function index(Request $request)
     {
         $data = $request->all();
@@ -33,6 +34,11 @@ class MchtController extends Controller
         }else{
             $data['type'] = 'unlogin';
             $res = $this->getApiServerNone($data,$this->API_URL_MCHT,'get');
+        }
+        if($res->code===10000){
+            foreach($res->data as $v){
+//                $v->item_name = strlen($v->item_name)<=11?$v->item_name:str_limit($v->item_name,11,'');
+            }
         }
         return response()->json($res);
     }

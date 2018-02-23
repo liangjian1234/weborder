@@ -102,7 +102,7 @@
                         var str1_start = '<div class="weui-flex__item">\n' + '<div class="list-item">\n ';
                         var str1_favourite1 = (newObj1.added_to_favorite === true) ? '<i class="fa fa-heart" onclick="my_favorite(' + newObj1.item_id + ',true,this)"></i>\n' : '<i class="fa fa-heart-o" onclick="my_favorite(' + newObj1.item_id + ',false,this)"></i>\n';
                         var str1_favourite = '<div class="item-favourite text-right text-base_mid">\n' + str1_favourite1 + '</div>\n';
-                        var str1_img = '<div class="item-img" onclick="href_detail('+newObj1.item_id+')">\n' + '<img  class="center-block" src="' + newObj1.default_image_prefix + '/' + newObj1.default_image + '" alt="" style="width:100%">\n' + '</div>\n';
+                        var str1_img = '<div class="item-img" onclick="href_detail('+newObj1.item_id+')">\n' + '<img  class="center-block" src="' + newObj1.default_image_prefix + '/' + newObj1.default_image + '" alt="" height=100 style="width:100%">\n' + '</div>\n';
                         var str1_name = '<div class="item-name" onclick="href_detail('+newObj1.item_id+')">\n' + newObj1.item_name + '</div>\n';
                         var str1_desc = '<div class="item-desc" onclick="href_detail('+newObj1.item_id+')">\n' + newObj1.item_desc + '</div>\n';
                         var str1_price = '<div class="item-cart">\n' + '<div>&dollar;' + newObj1.price + '</div>\n';
@@ -115,7 +115,7 @@
                             var str2_start = '<div class="weui-flex__item">\n' + '<div class="list-item">\n';
                             var str2_favourite1 = (newObj2.added_to_favorite === true) ? '<i class="fa fa-heart" onclick="my_favorite(' + newObj2.item_id + ',true,this)"></i>\n' : '<i class="fa fa-heart-o" onclick="my_favorite(' + newObj2.item_id + ',false,this)"></i>\n';
                             var str2_favourite = '<div class="item-favourite text-right text-base_mid">\n' + str2_favourite1 + '</div>\n';
-                            var str2_img = '<div class="item-img" onclick="href_detail('+newObj2.item_id+')">\n' + '<img  class="center-block" src="' + newObj2.default_image_prefix + '/' + newObj2.default_image + '" alt="" style="width:100%">\n' + '</div>\n';
+                            var str2_img = '<div class="item-img" onclick="href_detail('+newObj2.item_id+')">\n' + '<img  class="center-block" src="' + newObj2.default_image_prefix + '/' + newObj2.default_image + '" alt=""  height=100 style="width:100%">\n' + '</div>\n';
                             var str2_name = '<div class="item-name" onclick="href_detail('+newObj2.item_id+')">\n' + newObj2.item_name + '</div>\n';
                             var str2_desc = '<div class="item-desc" onclick="href_detail('+newObj2.item_id+')">\n' + newObj2.item_desc + '</div>\n';
                             var str2_price = '<div class="item-cart">\n' + '<div>&dollar;' + newObj2.price + '</div>\n';
@@ -141,7 +141,7 @@
                 try{
                     var data = {mcht_id:merchant_id,item_status:'A',per_page:pageSize,page:pageNum};
                     $.post("{{route('merchant')}}",data,function(res){
-                        // console.log(res)
+                        console.log(res)
                         if(res.code===10000){
                             var newArr = res.data;
                             var pages = res.meta.last_page;
