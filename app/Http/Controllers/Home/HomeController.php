@@ -34,6 +34,7 @@ class HomeController extends Controller
                     $mcht->ethnic_type = config('advancina.ethnic_type.'. $mcht->ethnic_type,'');
                     $mcht->address1 = str_limit($mcht->address1,20,'');
                     $mcht->address2 = str_limit($mcht->address2,20,'');
+                    empty($mcht->avatar)?:$mcht->avatar=config('advancina.file_domain').'/'.$mcht->mcht_id.'/'.$mcht->avatar;
                 }
             }
             return response()->json($mchts);

@@ -141,7 +141,7 @@
                 try{
                     var data = {mcht_id:merchant_id,item_status:'A',per_page:pageSize,page:pageNum};
                     $.post("{{route('merchant')}}",data,function(res){
-                        console.log(res)
+                        // console.log(res)
                         if(res.code===10000){
                             var newArr = res.data;
                             var pages = res.meta.last_page;

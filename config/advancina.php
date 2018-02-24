@@ -32,6 +32,8 @@ return [
     //minutes
     'tokenLifetime'    =>23.5*60,
 
+    //文件路径
+    'file_domain'       =>env('FILE_DOMAIN','http://neworderstatic.advancina.net'),
     //订单状态
     'order_status'      =>  [
             'N'=>'New',
