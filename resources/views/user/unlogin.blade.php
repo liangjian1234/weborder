@@ -16,15 +16,15 @@
     </a>
     <a href="javascript:;" class="weui-grid">
         <div class="weui-grid__icon text-center f_15">
-            <i class="fa fa-ticket text-primary"></i>
+            <i class="fa fa-shopping-cart text-primary"></i>
         </div>
-        <p class="weui-grid__label">Coupon</p>
+        <p class="weui-grid__label">Cart</p>
     </a>
     <a href="javascript:;" class="weui-grid">
         <div class="weui-grid__icon text-center f_15">
-            <i class="fa fa-bandcamp text-warn"></i>
+            <i class="fa fa-heart text-warn"></i>
         </div>
-        <p class="weui-grid__label">Coin</p>
+        <p class="weui-grid__label">Favorites</p>
     </a>
 </div>
 @include('user.about')

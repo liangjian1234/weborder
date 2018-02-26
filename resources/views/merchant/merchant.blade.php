@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('merchant._main')
 
 @section('main_title','Merchant')
 
@@ -31,7 +31,7 @@
     <script type="text/javascript" src="{{asset('js/mescroll.min.js')}}"></script>
     <script type="text/javascript">
         $().ready(function(){
-            $('.weui-tabbar_home').addClass('weui-bar__item_on').siblings().removeClass('weui-bar__item_on');
+            $('.weui-tabbar_menu').addClass('weui-bar__item_on').siblings().removeClass('weui-bar__item_on');
         })
     </script>
     <script type="text/javascript" charset="utf-8">

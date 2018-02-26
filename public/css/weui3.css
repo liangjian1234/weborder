@@ -102,6 +102,15 @@
 .list-item .item-cart div:nth-child(1){display:inline-block;width:48%;font-size:1.3em;}
 .list-item .item-cart div:nth-child(2){display:inline-block;width:48%;font-size:1.5em;}
 /*
+ * Mercahnt mercahnt _main
+ */
+.bottom-merchant-main .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon,.bottom-merchant-main .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon>i,.bottom-merchant-main .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
+    color: #FFF;
+}
+.bottom-merchant-main .weui-tabbar__icon>i,.bottom-merchant-main i.weui-tabbar__icon,.bottom-merchant-main .weui-tabbar__label{
+    color:#d5d5d6;
+}
+/*
  * Merchant Details
  */
 .item-details{background-color:#fff;padding-top:20px;box-sizing: border-box;height: 100%;padding-bottom: 150px;overflow: auto;-webkit-overflow-scrolling: touch;}

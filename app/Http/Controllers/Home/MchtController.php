@@ -73,6 +73,13 @@ class MchtController extends Controller
         }
         return view('home.notfound',['msg'=>'Mercahnt Not Found !']);
     }
+    public function seat(Request $request,$mchtid='',$mchtname=''){
+        return view('merchant.seat', compact('mchtid','mchtname'));
+    }
+    public function about(Request $request,$mchtid='',$mchtname=''){
+        return view('merchant.about', compact('mchtid','mchtname'));
+
+    }
     public function combo(Request $request,$package_id='')
     {
         if($package_id){

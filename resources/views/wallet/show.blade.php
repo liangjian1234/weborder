@@ -41,10 +41,10 @@
                 </div>
             </div>
             @if(!$card->default_pay)
-            <div class="weui-cells__title">SET DEFAULT PAY</div>
+            <div class="weui-cells__title">SET AS DEFAULT PAYMENT </div>
             <div class="weui-cells weui-cells_form">
                 <div class="weui-cell weui-cell_switch">
-                    <div class="weui-cell__bd">SET ?</div>
+                    <div class="weui-cell__bd"></div>
                     <div class="weui-cell__ft">
                         <label for="default_pay" class="weui-switch-cp">
                             <input id="default_pay" name="default-pay" class="weui-switch-cp__input" type="checkbox" value="1">

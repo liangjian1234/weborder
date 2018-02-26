@@ -25,15 +25,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $user = $this->getUserInfo($request);
-        $token = $request->cookie('bearerToken');
-        $wallet = 0;
-        if($token){
-            $response = $this->getApiServer($token,[],$this->API_URL_WALLET,'get');
-            if($response->code===10000){
-                $wallet = count($response->data);
-            }
-        }
-        return view('user.index',compact('user','wallet'));
+        return view('user.index',compact('user'));
     }
     //settings
     public function settings(Request $request){
