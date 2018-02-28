@@ -76,7 +76,7 @@
 .merchant-list .weui-flex{margin:8px auto}
 .merchant-list .weui-loadmore_line .weui-loadmore__tips {background-color:#fff;}
 /*
- * Mercahnt mercahnt
+ * Mercahnt mercahnt menu
  */
 .shopping-cart{position: fixed;width: 40px;height:40px;border:1px solid #586c94;border-radius:40px;bottom:125px;right:2px;}
 .shopping-cart .fa{position: absolute;top: 8px;left: 6px;color:#586c94;font-size:1.6em}
@@ -110,6 +110,18 @@
 .bottom-merchant-main .weui-tabbar__icon>i,.bottom-merchant-main i.weui-tabbar__icon,.bottom-merchant-main .weui-tabbar__label{
     color:#d5d5d6;
 }
+/*
+ * Merchant merchant seat
+ */
+.merchant-seat .seat-time .weui-cell{padding:40px 15px;font-size: 1.3em}
+.merchant-seat .seat-time span{border: 1px solid #ccc;padding: 0px 10px;}
+.merchant-seat .seat-show .weui-cell{padding:0px 15px 40px 15px}
+/*
+ * Merchant merchant about
+ */
+.merchant-about-img .arror-left{font-size:2em;color:#fff;position: absolute;width: 15px;top: 63px;left: 15px;}
+.merchant-about-img .arror-right{font-size:2em;color:#fff;position: absolute;width: 15px;top: 63px;right: 15px;}
+.merchant-about-favorite{padding:10px 0px;font-size:2em}
 /*
  * Merchant Details
  */

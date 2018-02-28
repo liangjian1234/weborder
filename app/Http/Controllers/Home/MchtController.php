@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 class MchtController extends Controller
 {
     public $API_URL_MCHT;
+    public $API_URL_MCHT_ABOUT;
     public $API_URL_COMBO;
     public $API_URL_ITEM;
     public $API_URL_PACKAGE;
@@ -16,6 +17,7 @@ class MchtController extends Controller
     public function __construct()
     {
         $this->API_URL_MCHT = config('advancina.api.url').config('advancina.api.merchant');
+        $this->API_URL_MCHT_ABOUT = config('advancina.api.url').config('advancina.api.mcht_about');
         $this->API_URL_COMBO = config('advancina.api.url').config('advancina.api.combo');
         $this->API_URL_DETAIL = config('advancina.api.url').config('advancina.api.detail');
         $this->API_URL_ITEM_DETAIL = config('advancina.api.url').config('advancina.api.item_detail');
@@ -71,14 +73,18 @@ class MchtController extends Controller
                 }
             }
         }
-        return view('home.notfound',['msg'=>'Mercahnt Not Found !']);
+        return view('home.notfound',['msg'=>'Merchant Not Found !']);
     }
     public function seat(Request $request,$mchtid='',$mchtname=''){
         return view('merchant.seat', compact('mchtid','mchtname'));
     }
     public function about(Request $request,$mchtid='',$mchtname=''){
-        return view('merchant.about', compact('mchtid','mchtname'));
-
+        $response = $this->getApiServerNone([],$this->API_URL_MCHT_ABOUT.'/'.$mchtid,'get');
+        if($response->code===10000){
+            $mcht = $response->data;
+            return view('merchant.about', compact('mchtid','mchtname','mcht'));
+        }
+        return view('home.notfound',['msg'=>'Merchant Not Found !']);
     }
     public function combo(Request $request,$package_id='')
     {

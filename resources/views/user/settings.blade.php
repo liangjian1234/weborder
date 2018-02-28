@@ -19,7 +19,7 @@
                 <i class="fa fa-user text-blue"></i>
             </div>
             <div class="weui-cell__bd">
-                <p class="{{ !empty($user->lname)||!empty($user->mname)||!empty($user->fname)?:'text-mute'}}">{{ !empty($user->lname)||!empty($user->mname)||!empty($user->fname)?$user->lname.' '.$user->mname.' '.$user->fname:'unset name'}}</p>
+                <p class="{{ !empty($user->lname)||!empty($user->mname)||!empty($user->fname)?:'text-mute'}}">{{ !empty($user->lname)||!empty($user->mname)||!empty($user->fname)?$user->fname.' '.$user->mname.' '.$user->lname:'unset name'}}</p>
             </div>
             <div class="weui-cell__ft"></div>
         </a>

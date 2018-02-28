@@ -11,6 +11,7 @@ return [
         'codeVerify'        =>  'verify',
         //商户
         'mcht'               => 'mcht',
+        'mcht_about'        => 'mcht/about',
         //未登录商品
         'merchant'          =>  'merchant',
         'combo'              =>  'combo',
